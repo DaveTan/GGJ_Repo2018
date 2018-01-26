@@ -1,6 +1,5 @@
 package ggj_game.utils.pathfinder;
 
-import GameMapLib.Main.MapData;
 
 
 public class GMap implements Map{
@@ -38,8 +37,6 @@ public class GMap implements Map{
 	}
 
 	public boolean blocked(int x, int y) {
-		if(MapData.map[x][y]==1)
-			return true;
 		return false;
 	}
 

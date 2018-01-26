@@ -12,12 +12,12 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Test_P extends BasicGameState{
     @Override
     public int getID() {
-        return 0;
+        return 1;
     }
 
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
-
+        Test_V.initialize();
     }
 
     @Override

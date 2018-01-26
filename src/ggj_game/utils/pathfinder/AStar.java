@@ -3,10 +3,6 @@ package ggj_game.utils.pathfinder;
 
 
 
-import org.newdawn.slick.util.pathfinding.AStarPathFinder;
-import org.newdawn.slick.util.pathfinding.heuristics.ClosestHeuristic;
-
-import javax.xml.soap.Node;
 import java.util.ArrayList;
 import java.util.Collections;
 
