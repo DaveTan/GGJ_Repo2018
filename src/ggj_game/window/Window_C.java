@@ -2,10 +2,10 @@ package ggj_game.window;
 
 public class Window_C {
 	/* WINDOW SIZE HEIGHT */
-	public static final int SIZE_W 				= 800;
+	public static final int SIZE_W 				= 900;
 	
 	/* WINDOW SIZE WIDTH */
-    public static final int SIZE_H 				= 600;
+    public static final int SIZE_H 				= 800;
     
     /* WINDOWED SETTINGS */
     public static final boolean WINDOWED 			= false;
