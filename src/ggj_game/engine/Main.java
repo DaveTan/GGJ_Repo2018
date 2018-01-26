@@ -1,6 +1,7 @@
 package ggj_game.engine;
 
 import ggj_game.input.Keyboard_P;
+import ggj_game.sound.Sound_P;
 import ggj_game.window.Window_S;
 
 import java.io.File;
@@ -30,11 +31,14 @@ public class Main {
             /* INITIALIZE KEYBOARD CONTROL */
             Keyboard_P.initialize();
             
+            /* INITIALIZE SOUND CONTROL */
+            Sound_P.Initialize();
+            
             /* START ENGINE */
             system.start();
             
         }catch (SlickException e){
             e.printStackTrace();
-        }
+        }    
     }
 }
