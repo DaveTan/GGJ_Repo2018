@@ -26,6 +26,7 @@ public class Test_P extends BasicGameState{
     @Override
     public void render(GameContainer gc, StateBasedGame sb, Graphics g) throws SlickException {
         Test_V.gameMap1.render(g,0,0);
+
     }
 
     @Override

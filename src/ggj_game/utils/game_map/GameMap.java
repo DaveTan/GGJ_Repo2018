@@ -9,6 +9,7 @@ import org.newdawn.slick.SpriteSheet;
  * Created by Clientrace on 26/01/2018.
  */
 public class GameMap {
+    public static int binaryMap[][];
     private int hollows[][];
     private int solids[][];
     private int TileSize;
@@ -19,6 +20,7 @@ public class GameMap {
         hollows = MapParser.mapHollows;
         solids = MapParser.mapSolids;
         TileSize = size;
+        binaryMap = new int[MapParser.WIDTH][MapParser.HEIGHT];
     }
 
     public void render(Graphics g, float worldX, float worldY){
@@ -33,8 +35,12 @@ public class GameMap {
         // RENDER SOLIDS
         for(int i=0;i<MapParser.WIDTH;i++) {
             for(int j=0;j<MapParser.HEIGHT;j++) {
-                if(parseImageVal(solids[i][j])!=null)
-                    g.drawImage(parseImageVal(solids[i][j]), i*TileSize, j*TileSize);
+                if(parseImageVal(solids[i][j])!=null) {
+                    g.drawImage(parseImageVal(solids[i][j]), i * TileSize, j * TileSize);
+                    binaryMap[i][j] = 1;
+                }
+                else
+                    binaryMap[i][j] = 0;
             }
         }
     }
@@ -46,9 +52,6 @@ public class GameMap {
         SpriteSheet sheet = ImageRes.getSprite("tilesheet");
         int vertical = sheet.getVerticalCount();
         int horizontal = sheet.getHorizontalCount();
-
-        System.out.println(vertical);
-        System.out.println(horizontal);
 
         int x = (index % horizontal);
         int y = (index / vertical);
