@@ -1,5 +1,6 @@
 package ggj_game.engine;
 
+import ggj_game.entities.Entities_P;
 import ggj_game.input.Keyboard_P;
 import ggj_game.sound.Sound_P;
 import ggj_game.window.Window_S;
@@ -33,6 +34,9 @@ public class Main {
             
             /* INITIALIZE SOUND CONTROL */
             Sound_P.Initialize();
+            
+            /* INITIALIZE ENTITY LIST */
+            Entities_P.initialize();
             
             /* START ENGINE */
             system.start();

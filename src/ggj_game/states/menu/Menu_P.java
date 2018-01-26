@@ -8,6 +8,10 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+
+
+import ggj_game.entities.Entities_P;
+import ggj_game.entities.Test_Entity_P;
 /* LOCAL CONSTANTS */
 import ggj_game.input.Keyboard_P;
 import ggj_game.states.StateID_C;
@@ -49,6 +53,9 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
         
         graphics.drawImage(Menu_R.Test.getSprite(animX, animY), posX, posY);
         
+        Entities_P.draw();
+        
+        graphics.drawLine(0, 0, 100, 100);
     }
     
     /* UPDATE STATE VARIABLES */
@@ -95,7 +102,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     		frameCount = 0;
     	}
     	
-    	System.out.println(animX);
+    	Entities_P.update();
     	
 //    	if(i % 100 == 0){
 //    		if(animX >= Menu_R.Test.getHorizontalCount()){
@@ -165,17 +172,18 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     /* MOUSE LISTENER */
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
-    	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	Entities_P.add(new Test_Entity_P(x, y));
     }
     
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	Entities_P.add(new Test_Entity_P(newx, newy));
     }
     
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy){
-    	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	System.out.println(newx + ":" + newy);
     }
     
     @Override
