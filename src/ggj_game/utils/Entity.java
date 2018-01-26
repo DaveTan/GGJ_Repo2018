@@ -16,7 +16,10 @@ public class Entity {
     private int x;
     private int y;
 
-    public void init(){
+    public Entity(){
+        x = 0;
+        y = 0;
+        range = 100;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
     }
@@ -27,6 +30,7 @@ public class Entity {
         path = pathFinder.findPath(x,y,destX,destY);
         gMap.clearVisited();
         if(path!=null){
+            System.out.println("yeah");
             if(path.contains(x-1,y)) {
                 x--;
                 System.out.println("1 FOUND");
@@ -44,5 +48,13 @@ public class Entity {
                 System.out.println("4 FOUND");
             }
         }
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
     }
 }
