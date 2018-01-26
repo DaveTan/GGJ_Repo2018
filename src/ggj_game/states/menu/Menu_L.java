@@ -1,5 +1,5 @@
 package ggj_game.states.menu;
-
+/*LOGIC */
 public class Menu_L {
 	
 	

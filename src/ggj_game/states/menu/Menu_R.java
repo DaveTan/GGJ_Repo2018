@@ -3,7 +3,7 @@ package ggj_game.states.menu;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-
+/*Resources*/
 public class Menu_R {
 	/* 64 x 128 */
 	public static SpriteSheet Test;
