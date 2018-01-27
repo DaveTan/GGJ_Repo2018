@@ -61,7 +61,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
         
         graphics.drawImage(Menu_R.Test.getSprite(animX, animY), posX, posY);
         
-        Entities_P.draw_zombie();
+        Entities_P.draw_zombie(graphics);
         
         graphics.drawLine(0, 0, 100, 100);
         

@@ -10,8 +10,13 @@ import org.newdawn.slick.SpriteSheet;
 public class Explosion extends Animation_T{
 	/* SPRITE SHEET */
 	private static SpriteSheet SS = SpriteSheets_R.SS_Expl;
+	
 	private static SpriteSheet SS2 = SpriteSheets_R.SS_Exp2;
-
+	
+	/* Dead Body */
+	private static SpriteSheet SS3 = SpriteSheets_R.SS_DeadBody;
+	
+	
 	
 	/* STATES */
 	public static final int WALK_LEFT = 0;
@@ -20,7 +25,7 @@ public class Explosion extends Animation_T{
 	/* SETTINGS */
 	public static final int FRAME_SPEED = 250;
 	
-	public static ArrayList<Animation> get(){
+	public static ArrayList<Animation> get_Explosion(){
 		ArrayList<Animation> animationStates = new ArrayList<Animation>();
 		
 		for(int a=0; a< SS.getVerticalCount(); a++){
@@ -30,11 +35,21 @@ public class Explosion extends Animation_T{
 		return animationStates;
 	}
 
-	public static ArrayList<Animation> get2(){
+	public static ArrayList<Animation> get_Explosion2(){
 		ArrayList<Animation> animationStates = new ArrayList<Animation>();
 
 		for(int a=0; a< SS2.getVerticalCount(); a++){
 			animationStates.add(Get_Animation(SS2, a, SS2.getHorizontalCount(), FRAME_SPEED));
+		}
+
+		return animationStates;
+	}
+	
+	public static ArrayList<Animation> get_DeadBody(){
+		ArrayList<Animation> animationStates = new ArrayList<Animation>();
+
+		for(int a=0; a< SS3.getVerticalCount(); a++){
+			animationStates.add(Get_Animation(SS3, a, SS3.getHorizontalCount(), FRAME_SPEED));
 		}
 
 		return animationStates;

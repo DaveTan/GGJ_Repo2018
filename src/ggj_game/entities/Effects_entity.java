@@ -4,6 +4,7 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanMelee;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 
 import java.util.ArrayList;
 
@@ -20,25 +21,32 @@ public class Effects_entity extends Entity{
     private int index;
     
     public Effects_entity(int x, int y, int index) {
-        super(x, y, Entities_P.entCount++);
+    	super(x, y, Entities_P.entCount);
+        initialize(x, y, Entities_P.entCount++, index);
         
         this.index = index;
     }
 
-    @Override
-    public void initialize(int x, int y, int ID) {
+    public void initialize(int x, int y, int ID, int index) {
     	this.ID = ID;
     	
     	worldX = x;
         worldY = y;
-
+        
         if(index==0)
-            animationStates = Explosion.get();
+            animationStates = Explosion.get_Explosion();
         if(index==1)
-            animationStates = Explosion.get2();
+            animationStates = Explosion.get_Explosion2();
+        if(index==3)
+        	animationStates = Explosion.get_DeadBody();
 
         for(int a=0; a<animationStates.size();a++){
-        	animationStates.get(a).setLooping(false);
+            if(index == 3){
+            	animationStates.get(a).setLooping(true);
+            }
+            else{
+            	animationStates.get(a).setLooping(false);
+            }
             animationStates.get(a).start();
         }
 
@@ -47,7 +55,7 @@ public class Effects_entity extends Entity{
     }
 
     @Override
-    public void render() {
+    public void render(Graphics g) {
         animationStates.get(currentState).draw(this.worldX, this.worldY);
     }
 
@@ -72,6 +80,11 @@ public class Effects_entity extends Entity{
 	@Override
 	public int getID() {
 		return this.ID;
+	}
+
+	@Override
+	public void initialize(int x, int y, int ID) {
+		
 	}
 
 }

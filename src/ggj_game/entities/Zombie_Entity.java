@@ -2,6 +2,7 @@ package ggj_game.entities;
 
 import java.util.ArrayList;
 
+import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.states.menu.Menu_R;
@@ -12,6 +13,7 @@ import ggj_game.utils.pathfinder.GMap;
 import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
@@ -27,10 +29,10 @@ public class Zombie_Entity extends Entity{
     private int mapY;
     private int worldX;
     private int worldY;
-    private int speed = 1;
-    private int destX = 0;
-    private int destY = 0;
-    private int type = 0;
+    private int speed;
+    private int destX;
+    private int destY;
+    private int type;
     private int destination;
     private int destDist;
     private boolean destinationSet;
@@ -51,17 +53,19 @@ public class Zombie_Entity extends Entity{
 
 		currentState = Test_Entity_C.INITIAL_STATE;
 
+		speed = 1;
+
 		worldX = x;
         worldY = y;
         mapX = x/GameMap.TileSize;
         mapY = y/GameMap.TileSize;
-        range = 100;
+        range = 15;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
 	}
 
 	@Override
-	public void render() {
+	public void render(Graphics g) {
 		if(moveState == 0){
 			animationStates.get(currentState).draw(worldX-16, worldY-16, 32, 32);
 		}
@@ -103,7 +107,9 @@ public class Zombie_Entity extends Entity{
             	    int hx = Entities_P.humans.get(a).getX();
             	    int hy = Entities_P.humans.get(a).getY();
             	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
-                        Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
+            	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                        
                     }
                 }
             	

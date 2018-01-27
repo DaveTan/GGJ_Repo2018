@@ -1,5 +1,8 @@
 package ggj_game.entities;
 
+import ggj_game.utils.ImageRes;
+import org.newdawn.slick.Graphics;
+
 import java.util.ArrayList;
 
 public class Entities_P {
@@ -45,28 +48,29 @@ public class Entities_P {
 		}
 	}
 	
-	public static void draw_zombie(){
+	public static void draw_zombie(Graphics g){
 		for(int a = 0; a< zombies.size(); a++){
-			zombies.get(a).render();
+			zombies.get(a).render(g);
 		}
 	}
 
-	public static void draw_human(){
+	public static void draw_human(Graphics g){
+
 		for(int a = 0;a< humans.size(); a++){
-			humans.get(a).render();
+			humans.get(a).render(g);
 		}
 	}
 	
-	public static void draw_effects(){
+	public static void draw_effects(Graphics g){
 		for(int a = 0;a< effects.size(); a++){
-			effects.get(a).render();
+			effects.get(a).render(g);
 		}
 	}
 
 	public static boolean isPosOccupied(int x, int y, int dir){
 		if(dir==0){
 			for(int i = 0; i< zombies.size(); i++){
-				int pos = x - 20;
+				int pos = x - 30;
 				if(zombies.get(i).getX()==pos && Math.abs(y- zombies.get(i).getY())<10){
 					return true;
 				}
@@ -74,7 +78,7 @@ public class Entities_P {
 		}
 		if(dir==1){
 			for(int i = 0; i< zombies.size(); i++){
-				int pos = x + 20;
+				int pos = x + 30;
 				if(zombies.get(i).getX()==pos && Math.abs(y- zombies.get(i).getY())<10){
 					return true;
 				}
@@ -82,7 +86,7 @@ public class Entities_P {
 		}
 		if(dir==2){
 			for(int i = 0; i< zombies.size(); i++){
-				int pos = y - 20;
+				int pos = y - 30;
 				if(zombies.get(i).getY()==pos && Math.abs(x- zombies.get(i).getX())<10){
 					return true;
 				}
@@ -90,7 +94,7 @@ public class Entities_P {
 		}
 		if(dir==3){
 			for(int i = 0; i< zombies.size(); i++){
-				int pos = y + 20;
+				int pos = y + 30;
 				if(zombies.get(i).getY()==pos && Math.abs(x- zombies.get(i).getX())<10){
 					return true;
 				}
