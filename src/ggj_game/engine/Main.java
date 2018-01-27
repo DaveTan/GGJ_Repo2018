@@ -25,9 +25,10 @@ public class Main {
             AppGameContainer system = new AppGameContainer(new Engine_P());
             
             /* WINDOW SETTINGS */
+            
             system.setDisplayMode( 	Window_S.Width , 
 				            		Window_S.Height , 
-				            		Window_S.isWindowed );
+				            		false );
             
             /* INITIALIZE KEYBOARD CONTROL */
             Keyboard_P.initialize();

@@ -21,6 +21,9 @@ public class Explosion extends Animation_T{
 	private static SpriteSheet SS4 = SpriteSheets_R.SS_Blood;
 	
 	private static SpriteSheet SS5 = SpriteSheets_R.SS_ZombieDeath;
+
+
+	private static SpriteSheet SS6 = SpriteSheets_R.SS_Explostion3;
 	
 	/* STATES */
 	public static final int WALK_LEFT = 0;
@@ -44,6 +47,16 @@ public class Explosion extends Animation_T{
 
 		for(int a=0; a< SS2.getVerticalCount(); a++){
 			animationStates.add(Get_Animation(SS2, a, SS2.getHorizontalCount(), FRAME_SPEED));
+		}
+
+		return animationStates;
+	}
+
+	public static ArrayList<Animation> get_Explosion3(){
+		ArrayList<Animation> animationStates = new ArrayList<Animation>();
+
+		for(int a=0; a< SS6.getVerticalCount(); a++){
+			animationStates.add(Get_Animation(SS6, a, SS6.getHorizontalCount(), FRAME_SPEED));
 		}
 
 		return animationStates;

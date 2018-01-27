@@ -23,6 +23,8 @@ public class SpriteSheets_R {
 	public static SpriteSheet SS_Blood;
 	
 	public static SpriteSheet SS_ZombieDeath;
+
+	public static SpriteSheet SS_Explostion3;
 	
 	public static void initialize(){
 		try {
@@ -45,6 +47,8 @@ public class SpriteSheets_R {
 			SS_Blood = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.BLOOD), 32, 32 );
 			
 			SS_ZombieDeath = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + "Zombie1_Death.png"), 32, 32 );
+
+			SS_Explostion3 = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + "explosion3.png"), 80, 80);
 			
 		} catch (SlickException e) {
 			e.printStackTrace();

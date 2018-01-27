@@ -20,6 +20,7 @@ public class MapParser {
     public static int HEIGHT;
     public static int mapSolids [][];
     public static int mapHollows[][];
+    public static int mapSpawnPoints[][];
 
     public static void load(String path){
 
@@ -52,6 +53,14 @@ public class MapParser {
                                 mapHollows[j][k] = (int)((long)arr.get((k * WIDTH) + j));
                         }
                     }break;
+                    case "spawnpoints" : {
+                    	mapSpawnPoints = new int[WIDTH][HEIGHT];
+                    	JSONArray arr = (JSONArray) layer.get("data");
+                    	for(int j=0;j<WIDTH;j++){
+                    		for(int k=0;k<HEIGHT;k++)
+                    			mapSpawnPoints[j][k] = (int)((long)arr.get((k * WIDTH) + j));
+                    	}
+                    }
                 }
             }
         }catch (Exception e){
@@ -86,11 +95,6 @@ public class MapParser {
 
         int x = (index % horizontal);
         int y = (index / vertical);
-
-        System.out.println(horizontal);
-        System.out.println("INDEX: "+index+" X: "+x+" Y: "+y);
-
-        System.out.println("X: "+x+"Y: "+y);
         return sheet.getSubImage(x,y);
     }
 

@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 
 public class Sound_P {
-	private static ArrayList<Sound> SoundList;
+	public static ArrayList<Sound> SoundList;
 	
 	public static void Initialize(){
 		SoundList = new ArrayList<Sound>();
@@ -21,7 +21,9 @@ public class Sound_P {
 	}
 	
 	public static void Play(int SoundID){
-		SoundList.get(SoundID).play();
+		if(!SoundList.get(SoundID).playing()){
+			SoundList.get(SoundID).play();
+		}
 	}
 	
 	public static void Loop(int SoundID){

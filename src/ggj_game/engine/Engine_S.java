@@ -17,7 +17,7 @@ public class Engine_S {
 	public static boolean fpsDisplay 		= Engine_C.FPS_SHOW;
 	
 	/* VSYNC SETTINGS */
-	public static boolean vsync 			= Engine_C.VSYNC_ON;
+	public static boolean vsync 			= Engine_C.VSYNC_OFF;
 	
 	/* INITIAL STATE */
 	public static int initialState 			= StateID_C.MENU;

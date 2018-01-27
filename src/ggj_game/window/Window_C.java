@@ -2,7 +2,7 @@ package ggj_game.window;
 
 public class Window_C {
 	/* WINDOW SIZE HEIGHT */
-	public static final int SIZE_W 				= 960;
+	public static final int SIZE_W 				= 1280;
 	
 	/* WINDOW SIZE WIDTH */
     public static final int SIZE_H 				= 800;

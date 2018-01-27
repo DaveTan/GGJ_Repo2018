@@ -1,6 +1,11 @@
 package ggj_game.utils;
 
+import ggj_game.entities.Mine;
+import ggj_game.utils.game_map.GameMap;
+import ggj_game.utils.game_map.MapParser;
 import org.newdawn.slick.Graphics;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,7 +14,7 @@ import java.util.Random;
 public class MapEffects {
     private static Random random = new Random();
     private static int dir;
-    private static int dur = 15;
+    private static int dur = 10;
     private static int ticks;
     private static int range;
     public static boolean vibrate;
@@ -47,5 +52,7 @@ public class MapEffects {
             vibrate = false;
         }
     }
+
+
 
 }

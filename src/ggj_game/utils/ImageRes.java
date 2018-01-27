@@ -23,7 +23,9 @@ public class ImageRes {
             sprites.put("cards",loadSprite("res/card.png",100,150));
             sprites.put("range",loadSprite("res/range.png",150,150));
             sprites.put("shadow",loadSprite("res/shadow.png",25,13));
-            sprites.put("ui",loadSprite("res/UI.png", Window_C.SIZE_W,Window_C.SIZE_H));
+            sprites.put("ui",loadSprite("res/UI.png", 960,800));
+            sprites.put("mine",loadSprite("res/mine.png",11,11));
+            sprites.put("entity_icons",loadSprite("res/entity_icons.png",58,170));
         }catch (Exception e){
             e.printStackTrace();
         }
