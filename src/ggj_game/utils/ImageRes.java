@@ -20,11 +20,9 @@ public class ImageRes {
         try{
             sprites.put("tilesheet",loadSprite("res/tiles.png",32,32));
             sprites.put("cards",loadSprite("res/card.png",100,150));
-<<<<<<< HEAD
             sprites.put("upgrades", loadSprite("res/card.png",150,100));
-=======
             sprites.put("range",loadSprite("res/range.png",150,150));
->>>>>>> clarence
+
         }catch (Exception e){
             e.printStackTrace();
         }
