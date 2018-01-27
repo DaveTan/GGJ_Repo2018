@@ -37,13 +37,8 @@ public class Human_Entity extends Entity{
     private int destX = 0;
     private int destY = 0;
     private int type = 0;
-<<<<<<< HEAD
     private int ID = 0;
     private float atkspeed = 1.2f;
-=======
-    private int ID;
-
->>>>>>> clarence
     public Human_Entity(int x, int y) {
         super(x, y, Entities_P.entCount++);
     }
