@@ -7,9 +7,6 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-
-
-
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Test_Entity_P;
 /* LOCAL CONSTANTS */
@@ -55,8 +52,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
         Entities_P.draw();
         
         graphics.drawLine(0, 0, 100, 100);
-        graphics.drawString("<~ Menu", 34, 30);
-        graphics.drawString("Keyboard Controls: (Test your Keyboard)", 50, 80);
+        
     }
     
     /* UPDATE STATE VARIABLES */
