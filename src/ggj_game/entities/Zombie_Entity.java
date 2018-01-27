@@ -18,6 +18,7 @@ public class Zombie_Entity extends Entity{
 	int currentState;
 	
 	private int ID;
+	private int moveState;
 	private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -61,7 +62,12 @@ public class Zombie_Entity extends Entity{
 
 	@Override
 	public void render() {
-		animationStates.get(currentState).draw(worldX, worldY-32);
+		if(moveState == 0){
+			animationStates.get(currentState).draw(worldX-16, worldY-16, 32, 32);
+		}
+		else if( moveState == 1 ){
+			animationStates.get(currentState).draw(worldX+16, worldY-16, -32, 32);
+		}
 	}
 
 	@Override
@@ -89,14 +95,24 @@ public class Zombie_Entity extends Entity{
             setDest(humanX,humanY);
             updatePos(destX, destY);
             
-            if((worldX+50>=destX*32 && worldX-50<=destX*32) && (worldY+50>=destY*32 && worldY-50<=destY*32)){
-            	//PAPASABUGIN YUNG TOTOO
-            	Entities_P.add_effects(new Effects_entity(worldX -80, worldY - 60));
+            if((worldX+35>=destX*32 && worldX-35<=destX*32) && (worldY+40>=destY*32 && worldY-40<=destY*32)){
+
+                int exp_x = worldX - 80;
+                int exp_y = worldY - 60;
+            	Entities_P.add_effects(new Effects_entity(exp_x, exp_y, 0));
+
+
+            	for(int a=0;a<Entities_P.humans.size();a++){
+            	    int hx = Entities_P.humans.get(a).getX();
+            	    int hy = Entities_P.humans.get(a).getY();
+            	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
+                        Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                    }
+                }
             	
             	System.out.println("SABOG");
             	Entities_P.delete(this.ID, 1);
-            	
-            	
+
             }
         }
 
@@ -115,13 +131,18 @@ public class Zombie_Entity extends Entity{
         gMap.clearVisited();
 	    if(destinationSet){
 	            destDist--;
-	            if(destination==0)
+	            if(destination==0){
 	                worldX -= speed;
-	            if(destination==1)
+	                moveState = 0;
+	            }
+	            else if(destination==1){
 	                worldX += speed;
+	                moveState =1;
+	            }
+	            
 	            if(destination==2)
 	                worldY -= speed;
-	            if(destination==3)
+	            else if(destination==3)
 	                worldY += speed;
 	
 	            if(destDist==0)
