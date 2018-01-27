@@ -52,4 +52,10 @@ public class Test_P extends BasicGameState implements MouseListener{
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
     	Entities_P.add(new Test_Entity_P(x, y));
     }
+    
+    @Override
+    public void mouseDragged(int oldx, int oldy, int newx, int newy){
+    	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	Entities_P.add(new Test_Entity_P(newx, newy));
+    }
 }
