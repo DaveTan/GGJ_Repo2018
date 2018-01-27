@@ -41,9 +41,9 @@ public class Human_Entity extends Entity{
         animationStates = new ArrayList<Animation>();
 
         animationStates.add(Animation_P.LoadAnimation(Menu_R.Human, Test_Entity_C.IDLE_LEFT, 2, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
 
         for(int a=0; a<animationStates.size();a++){
             animationStates.get(a).start();
@@ -71,11 +71,6 @@ public class Human_Entity extends Entity{
     public void update(int i) {
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
-        }
-
-        updatePos(destX,destY);
-        if(worldX==destX && worldX==destY){
-            //EXPLOSION
         }
     }
 

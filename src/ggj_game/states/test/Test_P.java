@@ -1,6 +1,7 @@
 package ggj_game.states.test;
 
 import ggj_game.entities.Entities_P;
+import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
@@ -27,7 +28,6 @@ public class Test_P extends BasicGameState implements MouseListener {
         ImageRes.init();
         Zombie_List.initCards();
 //        Test_V.entity.setDest(5,5);
-        Entities_P.add(new Zombie_Entity(3, 3));
     }
 
     @Override
@@ -37,24 +37,25 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        g.setColor(new Color(255,255,255));
 //        g.fillRect(Test_V.entity.getX(),Test_V.entity.getY(),32,32);
 //        Test_V.entity.render();
-        Entities_P.draw();
+        Entities_P.draw_zombie();
+        Entities_P.draw_human();
         Zombie_List.render(g);
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sb, int i) throws SlickException {
-        Entities_P.update(i);
+        Entities_P.update_zombie(i);
+        Entities_P.update_human(i);
     }
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
-        Entities_P.add(new Zombie_Entity(x, y));
     }
 
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
         System.out.println(Thread.currentThread().getStackTrace()[1]);
-        //Entities_P.add(new Zombie_Entity(newx, newy));
+        //Entities_P.add_zombie(new Zombie_Entity(newx, newy));
     }
 
     @Override
@@ -65,7 +66,11 @@ public class Test_P extends BasicGameState implements MouseListener {
     @Override
     public void mousePressed(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
-    	Entities_P.add(new Zombie_Entity(x, y));
+    	//Entities_P.add_zombie(new Zombie_Entity(x, y));
+        if(button==0)
+            Entities_P.add_zombie(new Zombie_Entity(x, y));
+        if(button==1)
+            Entities_P.add_human(new Human_Entity(x,y));
     }
 
     @Override

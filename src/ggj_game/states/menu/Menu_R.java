@@ -10,6 +10,7 @@ public class Menu_R {
 	
 	/* 32 x32 */
 	public static SpriteSheet Human;
+	public static SpriteSheet Zombie;
 	
 	public static int Test_State;
 	public static int Test_Frame;
@@ -18,6 +19,7 @@ public class Menu_R {
 	public static void initialize(){
 		try {
 			Test = new SpriteSheet( new Image("res/SS_TEST.png"), 64, 128 );
+			Zombie = new SpriteSheet( new Image("res/zombehh.png"), 32, 32 );
 			Human = new SpriteSheet( new Image("res/human_melee_walk_spritesheet.png"), 32, 32 );
 			
 		} catch (SlickException e) {

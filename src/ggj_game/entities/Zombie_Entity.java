@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import ggj_game.animations.Animation_P;
 import ggj_game.states.menu.Menu_R;
-import ggj_game.states.menu.Menu_V;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -42,10 +41,10 @@ public class Zombie_Entity extends Entity{
 	public void initialize(int x, int y) {
 		animationStates = new ArrayList<Animation>();
 
-		animationStates.add(Animation_P.LoadAnimation(Menu_R.Human, Test_Entity_C.IDLE_LEFT, 2, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
+		animationStates.add(Animation_P.LoadAnimation(Menu_R.Zombie, Test_Entity_C.IDLE_LEFT, 2, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
+//		animationStates.add_zombie(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
 
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
@@ -62,8 +61,6 @@ public class Zombie_Entity extends Entity{
         range = 100;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
-
-        setDest(5,5);
 	}
 
 	@Override
@@ -77,7 +74,14 @@ public class Zombie_Entity extends Entity{
 			animationStates.get(a).update(i);
 		}
 
-        updatePos(destX,destY);
+		if(Entities_P.humans.size()>0) {
+            int nearest = getNearestHuman();
+            int humanX = Entities_P.humans.get(nearest).getX()/32;
+            int humanY = Entities_P.humans.get(nearest).getY()/32;
+            setDest(humanX,humanY);
+            updatePos(destX, destY);
+        }
+
         if(worldX==destX && worldX==destY){
             //EXPLOSION
         }
@@ -136,6 +140,26 @@ public class Zombie_Entity extends Entity{
                 }
             }
         }
+    }
+
+    public int getNearestHuman(){
+	    int index = 0;
+	    double oldDist = 1000000;
+        double dist;
+
+	    for(int i = 0; i< Entities_P.humans.size(); i++){
+	        int x1 = worldX;
+	        int y1 = worldY;
+	        int x2 = Entities_P.humans.get(i).getX();
+	        int y2 = Entities_P.humans.get(i).getY();
+
+	        dist = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+	        if(dist<=oldDist){
+	            oldDist = dist;
+	            index = i;
+            }
+	    }
+        return index;
     }
 
     public void setDest(int x, int y){
