@@ -84,7 +84,6 @@ public class Human_Entity extends Entity{
     	else if(currentState == STATE_ATTACKING_LEFT){
     		animationStates.get(1).draw(worldX, worldY, -32, 32);
     	}
-    	
     }
 
     @Override

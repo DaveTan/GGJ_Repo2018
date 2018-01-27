@@ -6,6 +6,7 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.states.menu.Menu_R;
+import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
