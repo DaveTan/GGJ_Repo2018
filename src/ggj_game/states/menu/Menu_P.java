@@ -1,6 +1,7 @@
 package ggj_game.states.menu;
 
 /* LWJGL LIBRARY */
+import ggj_game.entities.Zombie_Entity;
 import org.lwjgl.input.Keyboard;
 
 /* SLICK LIBRARY */
@@ -11,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 import ggj_game.entities.Entities_P;
-import ggj_game.entities.Test_Entity_P;
 /* LOCAL CONSTANTS */
 import ggj_game.input.Keyboard_P;
 import ggj_game.states.StateID_C;
@@ -183,7 +183,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     /* MOUSE LISTENER */
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
-    	Entities_P.add(new Test_Entity_P(x, y));
+    	Entities_P.add(new Zombie_Entity(x, y));
     	isHold = false;
     	holdAX = x;
     	holdAY = y;
@@ -194,7 +194,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
-//    	Entities_P.add(new Test_Entity_P(newx, newy));
+//    	Entities_P.add(new Zombie_Entity(newx, newy));
 //    	holdAX = oldx;
 //    	holdAY = oldy;
     	holdBX = newx;

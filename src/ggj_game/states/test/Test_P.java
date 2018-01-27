@@ -1,14 +1,9 @@
 package ggj_game.states.test;
 
 import ggj_game.entities.Entities_P;
-import ggj_game.entities.Test_Entity_P;
+import ggj_game.entities.Zombie_Entity;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
-import org.newdawn.slick.*;
-import ggj_game.input.Keyboard_P;
-import ggj_game.utils.ImageRes;
-import ggj_game.utils.game_map.GameMap;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -32,7 +27,7 @@ public class Test_P extends BasicGameState implements MouseListener {
         ImageRes.init();
         Zombie_List.initCards();
 //        Test_V.entity.setDest(5,5);
-        Entities_P.add(new Test_Entity_P(3, 3));
+        Entities_P.add(new Zombie_Entity(3, 3));
     }
 
     @Override
@@ -53,13 +48,13 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
-        Entities_P.add(new Test_Entity_P(x, y));
+        Entities_P.add(new Zombie_Entity(x, y));
     }
 
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
         System.out.println(Thread.currentThread().getStackTrace()[1]);
-        Entities_P.add(new Test_Entity_P(newx, newy));
+        Entities_P.add(new Zombie_Entity(newx, newy));
     }
 
     @Override
@@ -70,7 +65,7 @@ public class Test_P extends BasicGameState implements MouseListener {
     @Override
     public void mousePressed(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
-    	Entities_P.add(new Test_Entity_P(x, y));
+    	Entities_P.add(new Zombie_Entity(x, y));
     }
 
     @Override

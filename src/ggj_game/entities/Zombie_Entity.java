@@ -13,7 +13,7 @@ import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
 
-public class Test_Entity_P extends Entity{
+public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	int currentState;
 	
@@ -30,7 +30,7 @@ public class Test_Entity_P extends Entity{
     private int destX = 0;
     private int destY = 0;
 	
-	public Test_Entity_P(int x, int y) {
+	public Zombie_Entity(int x, int y) {
 		super(x, y);
 	}
 	
