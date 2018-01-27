@@ -38,7 +38,7 @@ public class Test_Entity_P extends Entity{
 	public void initialize(int x, int y) {
 		animationStates = new ArrayList<Animation>();
 		
-		animationStates.add(Animation_P.LoadAnimation(Menu_R.Human, Test_Entity_C.IDLE_LEFT, 5, 250));
+		animationStates.add(Animation_P.LoadAnimation(Menu_R.Human, Test_Entity_C.IDLE_LEFT, 2, 250));
 //		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
 //		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
 //		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));

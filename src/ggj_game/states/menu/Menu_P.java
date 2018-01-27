@@ -24,6 +24,12 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
 	private int posX = 100;
 	private int posY = 100;
 	
+	private int holdAX = 0;
+	private int holdAY = 0;
+	private int holdBX = 0;
+	private int holdBY = 0;
+	private boolean isHold = false;
+	
 	/* ASSIGN STATE ID */
     public int getID() {
         return StateID_C.MENU;
@@ -56,6 +62,11 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
         Entities_P.draw();
         
         graphics.drawLine(0, 0, 100, 100);
+        
+        if(isHold){
+        	graphics.drawRect(holdAX, holdAY, holdBX - holdAX, holdBY - holdAY);
+        }
+        
     }
     
     /* UPDATE STATE VARIABLES */
@@ -173,12 +184,21 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
     	Entities_P.add(new Test_Entity_P(x, y));
+    	isHold = false;
+    	holdAX = x;
+    	holdAY = y;
+    	holdBX = x;
+    	holdBY = y;
     }
     
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
-    	Entities_P.add(new Test_Entity_P(newx, newy));
+//    	Entities_P.add(new Test_Entity_P(newx, newy));
+//    	holdAX = oldx;
+//    	holdAY = oldy;
+    	holdBX = newx;
+    	holdBY = newy;
     }
     
     @Override
@@ -189,11 +209,19 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     @Override
     public void mousePressed(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	isHold = true;
+    	holdAX = x;
+    	holdAY = y;
     }
     
     @Override
     public void mouseReleased(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
+    	isHold = false;
+    	holdAX = x;
+    	holdAY = y;
+    	holdBX = x;
+    	holdBY = y;
     }
     
     @Override

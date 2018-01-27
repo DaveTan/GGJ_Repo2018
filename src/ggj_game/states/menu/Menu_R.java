@@ -18,7 +18,7 @@ public class Menu_R {
 	public static void initialize(){
 		try {
 			Test = new SpriteSheet( new Image("res/SS_TEST.png"), 64, 128 );
-			Human = new SpriteSheet( new Image("res/human_melee_walk_spritesheet.png"), 32, 32 );
+			Human = new SpriteSheet( new Image("res/zombehh.png"), 32, 32 );
 			
 		} catch (SlickException e) {
 			e.printStackTrace();
