@@ -99,13 +99,32 @@ public class Entities_P {
 		return false;
 	}
 	
-	public static void delete(int ID){
+	public static void delete(int ID, int type){
 		
-		for(int a=0; a<zombies.size(); a++){
-			if( zombies.get(a).getID() == ID ){
-				zombies.remove(a);
-				break;
+		if(type == 1){
+			for(int a=0; a<zombies.size(); a++){
+				if( zombies.get(a).getID() == ID ){
+					zombies.remove(a);
+					break;
+				}
 			}
 		}
+		else if(type ==2){
+			for(int a=0; a<effects.size(); a++){
+				if( effects.get(a).getID() == ID ){
+					effects.remove(a);
+					break;
+				}
+			}
+		}
+		else{
+			for(int a=0; a<humans.size(); a++){
+				if( humans.get(a).getID() == ID ){
+					humans.remove(a);
+					break;
+				}
+			}
+		}
+		
 	}
 }

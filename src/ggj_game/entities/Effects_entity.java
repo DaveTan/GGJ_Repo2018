@@ -32,6 +32,7 @@ public class Effects_entity extends Entity{
         animationStates = Explosion.get();
         for(int a=0; a<animationStates.size();a++){
         	animationStates.get(a).setLooping(false);
+        	animationStates.get(a).stopAt(animationStates.size());
             animationStates.get(a).start();
         }
 
@@ -49,7 +50,7 @@ public class Effects_entity extends Entity{
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
             if(animationStates.get(a).isStopped()){
-            	Entities_P.delete(this.ID);
+            	Entities_P.delete(this.ID, 2);
             }
         }
     }

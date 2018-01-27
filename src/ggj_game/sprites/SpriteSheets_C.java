@@ -11,7 +11,7 @@ public class SpriteSheets_C {
 	/* Human */
 	public static final String HUMAN_MELEE = "Human_Melee.png";
 	public static final String HUMAN_PISTOL = "";
-	public static final String HUMAN_RIFLE = "";
+	public static final String HUMAN_RIFLE = "Human_Rifle.png";
 	
 	/* Zombie */
 	public static final String ZOMBIE_CONTACT = "Zombie_Contact.png";
