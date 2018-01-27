@@ -12,12 +12,14 @@ import ggj_game.utils.pathfinder.GMap;
 import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	int currentState;
 	
 	private int ID;
+	private int moveState;
 	private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -56,14 +58,19 @@ public class Zombie_Entity extends Entity{
         worldY = y;
         mapX = x/GameMap.TileSize;
         mapY = y/GameMap.TileSize;
-        range = 100;
+        range = 15;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
 	}
 
 	@Override
-	public void render() {
-		animationStates.get(currentState).draw(worldX, worldY-32);
+	public void render(Graphics g) {
+		if(moveState == 0){
+			animationStates.get(currentState).draw(worldX-16, worldY-16, 32, 32);
+		}
+		else if( moveState == 1 ){
+			animationStates.get(currentState).draw(worldX+16, worldY-16, -32, 32);
+		}
 	}
 
 	@Override
@@ -92,7 +99,6 @@ public class Zombie_Entity extends Entity{
             updatePos(destX, destY);
             
             if((worldX+35>=destX*32 && worldX-35<=destX*32) && (worldY+40>=destY*32 && worldY-40<=destY*32)){
-            	//PAPASABUGIN YUNG TOTOO
 
                 int exp_x = worldX - 80;
                 int exp_y = worldY - 60;
@@ -106,10 +112,9 @@ public class Zombie_Entity extends Entity{
                         Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
                     }
                 }
-
+            	
             	System.out.println("SABOG");
             	Entities_P.delete(this.ID, 1);
-            	
 
             }
         }
@@ -129,13 +134,18 @@ public class Zombie_Entity extends Entity{
         gMap.clearVisited();
 	    if(destinationSet){
 	            destDist--;
-	            if(destination==0)
+	            if(destination==0){
 	                worldX -= speed;
-	            if(destination==1)
+	                moveState = 0;
+	            }
+	            else if(destination==1){
 	                worldX += speed;
+	                moveState =1;
+	            }
+	            
 	            if(destination==2)
 	                worldY -= speed;
-	            if(destination==3)
+	            else if(destination==3)
 	                worldY += speed;
 	
 	            if(destDist==0)

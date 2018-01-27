@@ -4,6 +4,7 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanMelee;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ public class Effects_entity extends Entity{
     
     public Effects_entity(int x, int y, int index) {
         super(x, y, Entities_P.entCount++);
+        
+        this.index = index;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Effects_entity extends Entity{
     }
 
     @Override
-    public void render() {
+    public void render(Graphics g) {
         animationStates.get(currentState).draw(this.worldX, this.worldY);
     }
 

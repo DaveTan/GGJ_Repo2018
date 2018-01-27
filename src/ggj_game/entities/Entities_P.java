@@ -1,5 +1,8 @@
 package ggj_game.entities;
 
+import ggj_game.utils.ImageRes;
+import org.newdawn.slick.Graphics;
+
 import java.util.ArrayList;
 
 public class Entities_P {
@@ -45,21 +48,22 @@ public class Entities_P {
 		}
 	}
 	
-	public static void draw_zombie(){
+	public static void draw_zombie(Graphics g){
 		for(int a = 0; a< zombies.size(); a++){
-			zombies.get(a).render();
+			zombies.get(a).render(g);
 		}
 	}
 
-	public static void draw_human(){
+	public static void draw_human(Graphics g){
+
 		for(int a = 0;a< humans.size(); a++){
-			humans.get(a).render();
+			humans.get(a).render(g);
 		}
 	}
 	
-	public static void draw_effects(){
+	public static void draw_effects(Graphics g){
 		for(int a = 0;a< effects.size(); a++){
-			effects.get(a).render();
+			effects.get(a).render(g);
 		}
 	}
 

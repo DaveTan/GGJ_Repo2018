@@ -9,7 +9,7 @@ import org.newdawn.slick.SpriteSheet;
 
 public class ZombieContact extends Animation_T{
 	/* SPRITE SHEET */
-	private static SpriteSheet SS = SpriteSheets_R.SS_ZombieContact;
+	private static SpriteSheet SS = SpriteSheets_R.SS_ZombieAir;
 	
 	/* STATES */
 	public static final int WALK_LEFT = 0;

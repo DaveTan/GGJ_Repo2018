@@ -37,9 +37,9 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        g.setColor(new Color(255,255,255));
 //        g.fillRect(Test_V.entity.getX(),Test_V.entity.getY(),32,32);
 //        Test_V.entity.render();
-        Entities_P.draw_zombie();
-        Entities_P.draw_human();
-        Entities_P.draw_effects();
+        Entities_P.draw_human(g);
+        Entities_P.draw_zombie(g);
+        Entities_P.draw_effects(g);
         Zombie_List.render(g);
     }
 
