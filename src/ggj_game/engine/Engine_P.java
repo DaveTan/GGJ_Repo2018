@@ -1,6 +1,7 @@
 package ggj_game.engine;
 
 /* KEYBOARD CONTROL */
+import ggj_game.states.State_S;
 import ggj_game.window.Window_S;
 
 /* SLICK LIBRARY */
@@ -29,7 +30,8 @@ public class Engine_P extends StateBasedGame{
         }
 
         /* ENTER INITIAL STATE */
-        this.enterState( ggj_game.states.State_S.initialState );
+        //this.enterState( ggj_game.states.State_S.initialState );
+        this.enterState(State_S.testState);
 
     }
 }

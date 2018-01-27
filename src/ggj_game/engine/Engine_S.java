@@ -21,6 +21,9 @@ public class Engine_S {
 	
 	/* INITIAL STATE */
 	public static int initialState 			= StateID_C.MENU;
+
+	/* TEST STATE */
+	public static int testState				= StateID_C.TEST_PATHFIND;
 	
 	/* NATIVES PATH */
 	public static String natives 			= Engine_C.NATIVES_WINDOWS;
