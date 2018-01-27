@@ -8,7 +8,7 @@ public abstract class Entity {
 	
 	public abstract void initialize( int x, int y , int ID);
 	public abstract void render();
-	public abstract void update(int i) throws InterruptedException;
+	public abstract void update(int i);
 	public abstract int getID();
 	public abstract int getX();
 	public abstract int getY();

@@ -65,8 +65,8 @@ public class Zombie_Entity extends Entity{
 	}
 
 	@Override
-	public void update(int i) throws InterruptedException {
-		Thread.sleep(1000);
+	public void update(int i) {
+		
 		updatePos(destX,destY);
 		
 		if(worldX == destX && destY == worldX){
