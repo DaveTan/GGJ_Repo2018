@@ -7,10 +7,12 @@ public class Entities_P {
 	public static int entCount = 0;
 	public static ArrayList<Entity> zombies;
 	public static ArrayList<Entity> humans;
+	public static ArrayList<Entity> effects;
 	
 	public static void initialize(){
 		zombies = new ArrayList<Entity>();
 		humans = new ArrayList<Entity>();
+		effects = new ArrayList<Entity>();
 	}
 	
 	public static void add_zombie(Entity ent){
@@ -19,6 +21,10 @@ public class Entities_P {
 
 	public static void add_human(Entity ent){
 		humans.add(ent);
+	}
+	
+	public static void add_effects(Entity ent){
+		effects.add(ent);
 	}
 
 	public static void update_zombie(int i){
@@ -33,6 +39,12 @@ public class Entities_P {
 		}
 	}
 	
+	public static void update_effects(int i){
+		for(int a = 0; a< effects.size(); a++){	
+			effects.get(a).update(i);
+		}
+	}
+	
 	public static void draw_zombie(){
 		for(int a = 0; a< zombies.size(); a++){
 			zombies.get(a).render();
@@ -42,6 +54,12 @@ public class Entities_P {
 	public static void draw_human(){
 		for(int a = 0;a< humans.size(); a++){
 			humans.get(a).render();
+		}
+	}
+	
+	public static void draw_effects(){
+		for(int a = 0;a< effects.size(); a++){
+			effects.get(a).render();
 		}
 	}
 
@@ -82,9 +100,10 @@ public class Entities_P {
 	}
 	
 	public static void delete(int ID){
-		for(int a=0; a<entList.size(); a++){
-			if( entList.get(a).getID() == ID ){
-				entList.remove(a);
+		
+		for(int a=0; a<zombies.size(); a++){
+			if( zombies.get(a).getID() == ID ){
+				zombies.remove(a);
 				break;
 			}
 		}

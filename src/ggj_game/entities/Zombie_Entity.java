@@ -17,7 +17,6 @@ public class Zombie_Entity extends Entity{
 	int currentState;
 	
 	private int ID;
-	private boolean isDisabled = false;
 	private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -43,8 +42,6 @@ public class Zombie_Entity extends Entity{
 		this.ID = ID;
 		animationStates = ZombieContact.get();
 		System.out.println(ID);
-		animationStates = new ArrayList<Animation>();
-		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
 		}
@@ -81,6 +78,9 @@ public class Zombie_Entity extends Entity{
 		else{
 			System.out.println(worldX + ":" + worldY);
 		}
+		
+		System.out.println("DestX: "+destX);
+		System.out.println("X: "+worldX);
 
 		if(Entities_P.humans.size()>0) {
             int nearest = getNearestHuman();
@@ -88,10 +88,20 @@ public class Zombie_Entity extends Entity{
             int humanY = Entities_P.humans.get(nearest).getY()/32;
             setDest(humanX,humanY);
             updatePos(destX, destY);
+            
+            if((worldX+50>=destX*32 && worldX-50<=destX*32) && (worldY+50>=destY*32 && worldY-50<=destY*32)){
+            	//PAPASABUGIN YUNG TOTOO
+            	Entities_P.add_effects(new Effects_entity(worldX, worldY));
+            	
+            	System.out.println("SABOG");
+            	Entities_P.delete(this.ID);
+            	
+            	
+            }
         }
 
         if(worldX==destX && worldX==destY){
-            //EXPLOSION
+            //EXPLOSION YUNG MALI
         }
 	}
 
