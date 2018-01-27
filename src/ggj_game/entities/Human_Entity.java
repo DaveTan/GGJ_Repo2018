@@ -1,6 +1,7 @@
 package ggj_game.entities;
 
 import ggj_game.animations.HumanRifle;
+import ggj_game.utils.ImageRes;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -8,8 +9,10 @@ import ggj_game.utils.pathfinder.GMap;
 import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Clientrace on 27/01/2018.
@@ -38,6 +41,9 @@ public class Human_Entity extends Entity{
     private int destY = 0;
     private int type = 0;
     private int ID;
+    private Random rand;
+    private int load;
+    private int atkSpeed = 1;
 
     public Human_Entity(int x, int y) {
         super(x, y, Entities_P.entCount++);
@@ -46,6 +52,8 @@ public class Human_Entity extends Entity{
     @Override
     public void initialize(int x, int y, int ID) {
     	this.ID = ID;
+    	load = 10;
+    	rand = new Random();
         animationStates = HumanRifle.get();
         for(int a=0; a<animationStates.size();a++){
             animationStates.get(a).start();
@@ -65,8 +73,8 @@ public class Human_Entity extends Entity{
     }
 
     @Override
-    public void render() {
-    	if(currentState == STATE_WALKING_RIGHT){
+    public void render(Graphics g) {
+        if(currentState == STATE_WALKING_RIGHT){
     		animationStates.get(0).draw(worldX, worldY, 32, 32);
     	}
     	else if(currentState == STATE_WALKING_LEFT){
@@ -83,6 +91,22 @@ public class Human_Entity extends Entity{
 
     @Override
     public void update(int i) {
+        ticks++;
+        if(ticks>atkSpeed) {
+            ticks = 0;
+            for (int a = 0; a < Entities_P.zombies.size(); a++) {
+                int zombieX = Entities_P.zombies.get(a).getX();
+                int zombieY = Entities_P.zombies.get(a).getY();
+                double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
+                if (dist <= 100) {
+                    // PLAY ATTACK ANIMATION HERE
+                    int randShot = rand.nextInt(100);
+                    if (randShot >= 0 && randShot <= 5)
+                        Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
+                }
+            }
+        }
+
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
         }
