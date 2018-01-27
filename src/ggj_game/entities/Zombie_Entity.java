@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
+import ggj_game.animations.ZombieMelee;
 import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
@@ -21,6 +22,7 @@ public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	int currentState;
 	
+	private int Type;
 	private int ID;
 	private int moveState;
 	private GMap gMap;
@@ -46,6 +48,8 @@ public class Zombie_Entity extends Entity{
 	@Override
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
+		
+		this.type = ZombieContact.Type;
 		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();

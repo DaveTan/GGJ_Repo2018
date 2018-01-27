@@ -13,13 +13,16 @@ public class SpriteSheets_R {
 	public static SpriteSheet SS_HumanRifle;
 	
 	/* Zombies */
-	public static SpriteSheet SS_ZombieContact;
+	public static SpriteSheet SS_ZombieMelee;
+	
 	public static SpriteSheet SS_ZombieAir;
 	
 	/* ETC */
 	public static SpriteSheet SS_DeadBody;
+	
 	public static SpriteSheet SS_Blood;
 	
+	public static SpriteSheet SS_ZombieDeath;
 	
 	public static void initialize(){
 		try {
@@ -27,7 +30,7 @@ public class SpriteSheets_R {
 			
 			SS_HumanRifle = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.HUMAN_RIFLE), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
-			SS_ZombieContact = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_CONTACT), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
+			SS_ZombieMelee = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_MELEE), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
 			SS_ZombieAir = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_AIR), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
@@ -40,6 +43,9 @@ public class SpriteSheets_R {
 			SS_DeadBody = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.DEAD_BODY), 32, 32 );
 			
 			SS_Blood = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.BLOOD), 32, 32 );
+			
+			SS_ZombieDeath = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + "Zombie1_Death.png"), 32, 32 );
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

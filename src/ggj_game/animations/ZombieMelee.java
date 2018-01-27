@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SpriteSheet;
 
-public class ZombieContact extends Animation_T{
+public class ZombieMelee extends Animation_T{
 	/* SPRITE SHEET */
-	private static SpriteSheet SS = SpriteSheets_R.SS_ZombieAir;
-	public static int Type = 0;
+	private static SpriteSheet SS = SpriteSheets_R.SS_ZombieMelee;
+	public static int Type = 1;
 	
 	/* STATES */
 	public static final int WALK_LEFT = 0;
