@@ -2,6 +2,7 @@ package ggj_game.entities;
 
 import java.util.ArrayList;
 
+import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.game_map.GameMap;
@@ -41,7 +42,6 @@ public class Zombie_Entity extends Entity{
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
 		animationStates = ZombieContact.get();
-		System.out.println(ID);
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
 		}
@@ -94,7 +94,7 @@ public class Zombie_Entity extends Entity{
             	Entities_P.add_effects(new Effects_entity(worldX, worldY));
             	
             	System.out.println("SABOG");
-            	Entities_P.delete(this.ID);
+            	Entities_P.delete(this.ID, 1);
             	
             	
             }

@@ -20,9 +20,11 @@ public class SpriteSheets_R {
 		try {
 			SS_HumanMelee = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.HUMAN_MELEE), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
+			SS_HumanRifle = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.HUMAN_RIFLE), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
+			
 			SS_ZombieContact = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_CONTACT), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
-			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
+			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL).getScaledCopy(2), 160, 120 );
 			
 		} catch (SlickException e) {
 			e.printStackTrace();

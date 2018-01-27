@@ -16,7 +16,7 @@ public class Explosion extends Animation_T{
 	public static final int WALK_RIGHT = 1;
 	
 	/* SETTINGS */
-	public static final int FRAME_SPEED = 100;
+	public static final int FRAME_SPEED = 250;
 	
 	public static ArrayList<Animation> get(){
 		ArrayList<Animation> animationStates = new ArrayList<Animation>();

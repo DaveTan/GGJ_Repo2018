@@ -1,6 +1,7 @@
 package ggj_game.entities;
 
 import ggj_game.animations.HumanMelee;
+import ggj_game.animations.HumanRifle;
 import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
@@ -41,7 +42,7 @@ public class Human_Entity extends Entity{
     @Override
     public void initialize(int x, int y, int ID) {
     	this.ID = ID;
-        animationStates = HumanMelee.get();
+        animationStates = HumanRifle.get();
         for(int a=0; a<animationStates.size();a++){
             animationStates.get(a).start();
         }
