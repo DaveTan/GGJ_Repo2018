@@ -12,8 +12,6 @@ public class Menu_L {
 	
 	public static void event1(){
 		Menu_V.EventVar = 1;
-		
-		Sound_P.Play(Sound_C.Bell_ID);
 	}
 	public static void event2(){
 		Menu_V.EventVar = 2;

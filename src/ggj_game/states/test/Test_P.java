@@ -4,6 +4,8 @@ import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
 import ggj_game.entities.Zombie_Types;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
@@ -31,6 +33,8 @@ public class Test_P extends BasicGameState implements MouseListener {
         ImageRes.init();
         Zombie_List.initCards();
 //        Test_V.entity.setDest(5,5);
+        
+        Sound_P.Loop(Sound_C.MAIN_ID);
     }
 
     @Override

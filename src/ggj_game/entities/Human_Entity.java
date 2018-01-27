@@ -1,6 +1,8 @@
 package ggj_game.entities;
 
 import ggj_game.animations.HumanRifle;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
@@ -97,12 +99,14 @@ public class Human_Entity extends Entity{
                 double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
                 if (dist <= 100) {
                     // PLAY ATTACK ANIMATION HERE
+                	Sound_P.Play(Sound_C.SMG_ID);
                     if(zombieX<worldX)
                         currentState = STATE_ATTACKING_LEFT;
                     if(zombieX>worldX)
                         currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
                     if (randShot >= 0 && randShot <= 5){
+                    	Sound_P.Play(Sound_C.IDLE_ZOMBIE_ID);
                     	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 2));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
                     }

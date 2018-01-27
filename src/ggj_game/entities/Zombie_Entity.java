@@ -6,6 +6,8 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.animations.ZombieMelee;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
 import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
@@ -116,6 +118,7 @@ public class Zombie_Entity extends Entity{
             	    int hy = Entities_P.humans.get(a).getY();
             	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
             	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
+            	    	Sound_P.Play(Sound_C.DIARRHEA_ID);
 //            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
                         
