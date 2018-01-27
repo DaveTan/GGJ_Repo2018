@@ -6,6 +6,8 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.states.menu.Menu_R;
+import ggj_game.utils.ImageRes;
+import ggj_game.utils.MapEffects;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -83,7 +85,7 @@ public class Zombie_Entity extends Entity{
 		updatePos(destX,destY);
 		
 		if(worldX == destX && destY == worldX){
-			
+
 		}
 		else{
 			System.out.println(worldX + ":" + worldY);
@@ -118,7 +120,7 @@ public class Zombie_Entity extends Entity{
             	
             	System.out.println("SABOG");
             	Entities_P.delete(this.ID, 1);
-
+                MapEffects.vibrate = true;
             }
         }
 
