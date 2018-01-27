@@ -5,6 +5,7 @@ import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
+import ggj_game.utils.MapEffects;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -32,6 +33,9 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sb, Graphics g) throws SlickException {
+        if(MapEffects.vibrate){
+            MapEffects.vibrate(g,20);
+        }
         Test_V.gameMap1.render(g,0,0);
         g.setColor(new Color(255,255,255));
 //        g.setColor(new Color(255,255,255));

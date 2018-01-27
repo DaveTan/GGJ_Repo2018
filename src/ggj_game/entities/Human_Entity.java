@@ -42,7 +42,6 @@ public class Human_Entity extends Entity{
     private int type = 0;
     private int ID;
     private Random rand;
-    private int load;
     private int atkSpeed = 1;
 
     public Human_Entity(int x, int y) {
@@ -52,7 +51,6 @@ public class Human_Entity extends Entity{
     @Override
     public void initialize(int x, int y, int ID) {
     	this.ID = ID;
-    	load = 10;
     	rand = new Random();
         animationStates = HumanRifle.get();
         for(int a=0; a<animationStates.size();a++){
@@ -100,6 +98,10 @@ public class Human_Entity extends Entity{
                 double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
                 if (dist <= 100) {
                     // PLAY ATTACK ANIMATION HERE
+                    if(zombieX>worldX)
+                        currentState = STATE_ATTACKING_LEFT;
+                    if(zombieX>worldX)
+                        currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
                     if (randShot >= 0 && randShot <= 5)
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
