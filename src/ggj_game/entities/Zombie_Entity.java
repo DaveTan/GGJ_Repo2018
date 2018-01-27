@@ -64,6 +64,8 @@ public class Zombie_Entity extends Entity{
 
 		worldX = x;
         worldY = y;
+        rallyX = worldX;
+        rallyY = worldY;
         mapX = x/GameMap.TileSize;
         mapY = y/GameMap.TileSize;
         range = 15;
@@ -88,14 +90,6 @@ public class Zombie_Entity extends Entity{
 		}
 		
 		updatePos(destX,destY);
-		
-		if(worldX == destX && destY == worldX){
-
-		}
-		else{
-			System.out.println(worldX + ":" + worldY);
-		}
-		
 		System.out.println("DestX: "+destX);
 		System.out.println("X: "+worldX);
 
@@ -116,7 +110,7 @@ public class Zombie_Entity extends Entity{
             	    int hx = Entities_P.humans.get(a).getX();
             	    int hy = Entities_P.humans.get(a).getY();
             	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
-            	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
+            	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
 //            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
                     }
@@ -126,10 +120,6 @@ public class Zombie_Entity extends Entity{
             	Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
             }
-        }
-
-        if(worldX==destX && worldX==destY){
-            //EXPLOSION YUNG MALI
         }
 	}
 

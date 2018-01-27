@@ -20,4 +20,7 @@ public class SpriteSheets_C {
 	
 	/* Etc */
 	public static final String DEAD_BODY = "deadbody.png";
+	
+	/* BLOODS */
+	public static final String BLOOD = "bloods.png";
 }

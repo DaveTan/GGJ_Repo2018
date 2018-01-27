@@ -3,6 +3,7 @@ package ggj_game.animations;
 import ggj_game.sprites.SpriteSheets_R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SpriteSheet;
@@ -16,6 +17,8 @@ public class Explosion extends Animation_T{
 	/* Dead Body */
 	private static SpriteSheet SS3 = SpriteSheets_R.SS_DeadBody;
 	
+	/* BLood */
+	private static SpriteSheet SS4 = SpriteSheets_R.SS_Blood;
 	
 	
 	/* STATES */
@@ -52,6 +55,20 @@ public class Explosion extends Animation_T{
 			animationStates.add(Get_Animation(SS3, a, SS3.getHorizontalCount(), FRAME_SPEED));
 		}
 
+		return animationStates;
+	}
+	
+	public static ArrayList<Animation> get_Blood(){
+		ArrayList<Animation> animationStates = new ArrayList<Animation>();
+		
+		Random rand = new Random();
+		
+		int randomNum = rand.nextInt(4);
+		
+		for(int a=0; a< SS4.getVerticalCount(); a++){
+			animationStates.add(Get_Animation(SS4, randomNum, SS4.getHorizontalCount(), 200));
+		}
+		
 		return animationStates;
 	}
 }
