@@ -39,7 +39,7 @@ public class Main {
             Entities_P.initialize();
             
             /* START ENGINE */
-            system.start();
+                system.start();
             
         }catch (SlickException e){
             e.printStackTrace();
