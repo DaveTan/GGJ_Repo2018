@@ -17,7 +17,7 @@ public class Doodads_Entity extends Entity{
 	public Doodads_Entity(int x, int y, int ID, int type) {
 		super(x, y, Entities_P.entCount++);
 		
-		initialize(x, y, ID, type);
+		initialize(x, y, Entities_P.entCount++, type);
 	}
 
 	public void initialize(int x, int y, int ID, int type){

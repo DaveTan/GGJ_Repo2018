@@ -42,7 +42,7 @@ public class Human_Entity extends Entity{
     private int type = 0;
     private int ID;
     private Random rand;
-    private int atkSpeed = 1;
+    private int atkSpeed = 10;
 
     public Human_Entity(int x, int y) {
         super(x, y, Entities_P.entCount++);
@@ -102,9 +102,10 @@ public class Human_Entity extends Entity{
                     if(zombieX>worldX)
                         currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
-                    if (randShot >= 0 && randShot <= 5)
+                    if (randShot >= 0 && randShot <= 5){
                     	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 0));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
+                    }
                 }
             }
         }
