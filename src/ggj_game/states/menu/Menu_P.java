@@ -15,6 +15,7 @@ import ggj_game.entities.Entities_P;
 /* LOCAL CONSTANTS */
 import ggj_game.input.Keyboard_P;
 import ggj_game.states.StateID_C;
+import ggj_game.utils.CountTime;
 
 public class Menu_P extends BasicGameState implements KeyListener, MouseListener{
 	private int frameCount = 0;
@@ -42,6 +43,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     
     /* RENDER GRAPHICS */
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+    	System.out.println("Countdown Beginning"); new CountTime(10);
     	graphics.drawString("<~ Menu", 34, 30);
         graphics.drawString("Keyboard Controls: (Test your Keyboard)", 50, 80);
         
