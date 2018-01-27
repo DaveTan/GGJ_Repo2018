@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
+import ggj_game.animations.ZombieMelee;
 import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
@@ -12,6 +13,7 @@ import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
 import ggj_game.utils.pathfinder.GMap;
+import ggj_game.utils.pathfinder.Map;
 import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
@@ -22,6 +24,7 @@ public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	int currentState;
 	
+	private int Type;
 	private int ID;
 	private int moveState;
 	private GMap gMap;
@@ -43,6 +46,8 @@ public class Zombie_Entity extends Entity{
     private boolean destinationSet;
     private Random random;
 
+    private boolean isIDLE;
+
 	public Zombie_Entity(int x, int y) {
 		super(x, y, Entities_P.entCount++);
 	}
@@ -51,6 +56,7 @@ public class Zombie_Entity extends Entity{
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
 		random = new Random();
+		this.type = ZombieContact.Type;
 		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
@@ -61,6 +67,7 @@ public class Zombie_Entity extends Entity{
 		currentState = Test_Entity_C.INITIAL_STATE;
 
 		speed = 1;
+		isIDLE = false;
 
 		worldX = x;
         worldY = y;
@@ -99,7 +106,8 @@ public class Zombie_Entity extends Entity{
             int humanY = Entities_P.humans.get(nearest).getY()/32;
             setDest(humanX,humanY);
             updatePos(destX, destY);
-            
+
+            // CHECK FOR HUMAN CONTACT
             if((worldX+35>=destX*32 && worldX-35<=destX*32) && (worldY+40>=destY*32 && worldY-40<=destY*32)){
 
                 int exp_x = worldX - 80;
@@ -115,12 +123,31 @@ public class Zombie_Entity extends Entity{
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
                     }
                 }
-            	
-            	System.out.println("SABOG");
+
             	Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
             }
         }
+
+        // CHECK FOR MINE CONTACT
+        int mineIndex = 0;
+		boolean mineExploded = false;
+        for(int a=0;a<MapEffects.mines.size();a++){
+		    int mineX = MapEffects.mines.get(a).getX();
+		    int mineY = MapEffects.mines.get(a).getY();
+
+            if((worldX+15>=mineX && worldX-15<=mineX) && (worldY+20>=mineY && worldY-20<=mineY)){
+                Entities_P.doodads.add(new Doodads_Entity(mineX-10, mineY-10, 3, 4));
+                Entities_P.add_effects(new Effects_entity(mineX-80, mineY-60, 0));
+                Entities_P.delete(this.ID, 1);
+                MapEffects.vibrate = true;
+                mineExploded = true;
+                mineIndex = a;
+            }
+        }
+        if(mineExploded)
+            MapEffects.mines.remove(mineIndex);
+
 	}
 
 	public void updatePos(int destX, int destY){
@@ -187,6 +214,7 @@ public class Zombie_Entity extends Entity{
             rallyY = worldY;
         }
         else{
+            isIDLE = true;
             int mapMinX = rallyX-(rallyX%32);
             int mapMinY = rallyY-(rallyY%32);
             int mapMaxX = mapMinX+32;

@@ -29,13 +29,19 @@ public class Doodads_Entity extends Entity{
 		if(type == 0){
 			animationStates = Explosion.get_DeadBody();
 		}
-		else{
+		else if(type == 1){
 			animationStates = Explosion.get_Blood();
-
+		}
+		else if(type ==2){
+			animationStates = Explosion.get_ZombieDeath1();
+		}
+		else{
+			animationStates = Explosion.get_Explosion3();
+		}
+			
 			for(int a=0;a<animationStates.size();a++){
 	            animationStates.get(a).setLooping(false);
 	        }
-		}
 	}
 	
 	public void update(int i) {

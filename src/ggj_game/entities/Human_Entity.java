@@ -36,13 +36,17 @@ public class Human_Entity extends Entity{
     private int worldX;
     private int worldY;
     private int ticks = 0;
-    private int speed = 1;
+    private int speed ;
     private int destX = 0;
     private int destY = 0;
     private int type = 0;
     private int ID;
     private Random rand;
     private int atkSpeed = 10;
+    private boolean move;
+    private int rallyX;
+    private int rallyY;
+    private boolean isIDLE;
 
     public Human_Entity(int x, int y) {
         super(x, y, Entities_P.entCount++);
@@ -58,31 +62,34 @@ public class Human_Entity extends Entity{
         }
 
         currentState = Test_Entity_C.INITIAL_STATE;
-
+        move = false;
+        isIDLE = false;
+        speed = 1;
         worldX = x;
         worldY = y;
+        rallyX = worldX;
+        rallyY = worldY;
         mapX = x/ GameMap.TileSize;
         mapY = y/GameMap.TileSize;
         range = 100;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
 
-        setDest(5,5);
     }
 
     @Override
     public void render(Graphics g) {
         if(currentState == STATE_WALKING_RIGHT){
-    		animationStates.get(0).draw(worldX, worldY, 32, 32);
+    		animationStates.get(0).draw(worldX-16, worldY, 32, 32);
     	}
     	else if(currentState == STATE_WALKING_LEFT){
-    		animationStates.get(0).draw(worldX, worldY, -32, 32);
+    		animationStates.get(0).draw(worldX+16, worldY, -32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_RIGHT){
-    		animationStates.get(1).draw(worldX, worldY, 32, 32);
+    		animationStates.get(1).draw(worldX-16, worldY, 32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_LEFT){
-    		animationStates.get(1).draw(worldX, worldY, -32, 32);
+    		animationStates.get(1).draw(worldX+16, worldY, -32, 32);
     	}
     }
 
@@ -91,6 +98,7 @@ public class Human_Entity extends Entity{
         ticks++;
         if(ticks>atkSpeed) {
             ticks = 0;
+
             for (int a = 0; a < Entities_P.zombies.size(); a++) {
                 int zombieX = Entities_P.zombies.get(a).getX();
                 int zombieY = Entities_P.zombies.get(a).getY();
@@ -103,15 +111,45 @@ public class Human_Entity extends Entity{
                         currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
                     if (randShot >= 0 && randShot <= 5){
-                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 0));
+                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 2));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
                     }
+                    move = false;
+                    isIDLE = true;
                 }
+                else
+                    move = true;
             }
         }
+        else
+            move = true;
 
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
+        }
+        if(move) {
+            int mapMinX = rallyX - (rallyX % 32);
+            int mapMinY = rallyY - (rallyY % 32);
+            int mapMaxX = mapMinX + 12;
+            int mapMaxY = mapMinY + 12;
+
+            int dir = rand.nextInt(4);
+            if (dir == 0) {
+                if (worldX < mapMaxX - speed)
+                    worldX += speed;
+            }
+            if (dir == 1) {
+                if (worldX > mapMinX + speed)
+                    worldX -= speed;
+            }
+            if (dir == 2) {
+                if (worldY < mapMaxY - speed)
+                    worldY += speed;
+            }
+            if (dir == 3) {
+                if (worldY > mapMinY + speed)
+                    worldY -= speed;
+            }
         }
     }
 

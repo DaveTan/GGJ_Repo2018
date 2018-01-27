@@ -6,11 +6,8 @@ import ggj_game.entities.Zombie_Entity;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.MouseListener;
-import org.newdawn.slick.SlickException;
+
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -28,6 +25,7 @@ public class Test_P extends BasicGameState implements MouseListener {
         Test_V.initialize();
         ImageRes.init();
         Zombie_List.initCards();
+        MapEffects.generateMines(25);
 //        Test_V.entity.setDest(5,5);
     }
 
@@ -41,6 +39,24 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        g.setColor(new Color(255,255,255));
 //        g.fillRect(Test_V.entity.getX(),Test_V.entity.getY(),32,32);
 //        Test_V.entity.render();
+
+        // SHADOWS
+        for(int a = 0; a<Entities_P.zombies.size(); a++){
+            int zombieX = Entities_P.zombies.get(a).getX();
+            int zombieY = Entities_P.zombies.get(a).getY();
+            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),zombieX-11,zombieY+7);
+        }
+        for(int a = 0; a<Entities_P.humans.size(); a++){
+            int humansX = Entities_P.humans.get(a).getX();
+            int humansY = Entities_P.humans.get(a).getY();
+            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),humansX-11,humansY+25);
+        }
+
+        for(int i=0;i<MapEffects.mines.size();i++) {
+            int mineX = MapEffects.mines.get(i).getX();
+            int mineY = MapEffects.mines.get(i).getY();
+            g.drawImage(ImageRes.getSpriteImage("mine", 0, 0), mineX,mineY);
+        }
         Entities_P.draw_doodads(g);
         Entities_P.draw_human(g);
         Entities_P.draw_zombie(g);
@@ -60,6 +76,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
+    	Zombie_List.update(x,y);
     }
 
     @Override
@@ -70,38 +87,42 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void mouseMoved(int oldx, int oldy, int newx, int newy){
-        Zombie_List.update(newx,newy);
+        
     }
     
     @Override
     public void mousePressed(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
     	//Entities_P.add_zombie(new Zombie_Entity(x, y));
-        if(button==0) {
-            Entities_P.add_zombie(new Zombie_Entity(x, y));
-            Entities_P.add_zombie(new Zombie_Entity(x+15, y));
-            Entities_P.add_zombie(new Zombie_Entity(x+30, y+10));
-            Entities_P.add_zombie(new Zombie_Entity(x+45, y+15));
-            Entities_P.add_zombie(new Zombie_Entity(x+60, y+20));
-            Entities_P.add_zombie(new Zombie_Entity(x, y));
-            Entities_P.add_zombie(new Zombie_Entity(x+15, y+15));
-            Entities_P.add_zombie(new Zombie_Entity(x+30, y+30));
-            Entities_P.add_zombie(new Zombie_Entity(x+45, y+45));
-            Entities_P.add_zombie(new Zombie_Entity(x+60, y+60));
-        }
-        if(button==1)
-            Entities_P.add_human(new Human_Entity(x,y));
+    	if(Test_V.isHovered == false){
+    		if(button==0) {
+                Entities_P.add_zombie(new Zombie_Entity(x, y));
+                Entities_P.add_zombie(new Zombie_Entity(x+15, y));
+                Entities_P.add_zombie(new Zombie_Entity(x+30, y+10));
+                Entities_P.add_zombie(new Zombie_Entity(x+45, y+15));
+                Entities_P.add_zombie(new Zombie_Entity(x+60, y+20));
+                Entities_P.add_zombie(new Zombie_Entity(x, y));
+                Entities_P.add_zombie(new Zombie_Entity(x+15, y+15));
+                Entities_P.add_zombie(new Zombie_Entity(x+30, y+30));
+                Entities_P.add_zombie(new Zombie_Entity(x+45, y+45));
+                Entities_P.add_zombie(new Zombie_Entity(x+60, y+60));
+            }
+            if(button==1)
+                Entities_P.add_human(new Human_Entity(x,y));
+    	}
     }
 
     @Override
     public void mouseReleased(int button, int x, int y){
         System.out.println(Thread.currentThread().getStackTrace()[1]);
     }
-
+ 
     @Override
     public void mouseWheelMoved(int change){
         System.out.println(Thread.currentThread().getStackTrace()[1]);
     }
+    
+    
 
 
 }
