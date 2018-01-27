@@ -59,7 +59,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
         
         graphics.drawImage(Menu_R.Test.getSprite(animX, animY), posX, posY);
         
-        Entities_P.draw();
+        Entities_P.draw_zombie();
         
         graphics.drawLine(0, 0, 100, 100);
         
@@ -113,7 +113,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     		frameCount = 0;
     	}
     	
-    	Entities_P.update(i);
+    	Entities_P.update_zombie(i);
     	
 //    	if(i % 100 == 0){
 //    		if(animX >= Menu_R.Test.getHorizontalCount()){
@@ -183,7 +183,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     /* MOUSE LISTENER */
     @Override
     public void mouseClicked(int button, int x, int y, int clickCount){
-    	Entities_P.add(new Zombie_Entity(x, y));
+    	Entities_P.add_zombie(new Zombie_Entity(x, y));
     	isHold = false;
     	holdAX = x;
     	holdAY = y;
@@ -194,7 +194,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
-//    	Entities_P.add(new Zombie_Entity(newx, newy));
+//    	Entities_P.add_zombie(new Zombie_Entity(newx, newy));
 //    	holdAX = oldx;
 //    	holdAY = oldy;
     	holdBX = newx;

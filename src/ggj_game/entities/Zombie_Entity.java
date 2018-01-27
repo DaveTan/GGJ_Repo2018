@@ -3,6 +3,7 @@ package ggj_game.entities;
 import java.util.ArrayList;
 
 import ggj_game.animations.ZombieContact;
+import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -17,7 +18,6 @@ public class Zombie_Entity extends Entity{
 	
 	private int ID;
 	private boolean isDisabled = false;
-	
 	private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -29,23 +29,30 @@ public class Zombie_Entity extends Entity{
     private int speed = 1;
     private int destX = 0;
     private int destY = 0;
-	
+    private int type = 0;
+    private int destination;
+    private int destDist;
+    private boolean destinationSet;
+
 	public Zombie_Entity(int x, int y) {
 		super(x, y, Entities_P.entCount++);
 	}
-	
+
 	@Override
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
 		animationStates = ZombieContact.get();
 		System.out.println(ID);
-		
+		animationStates = new ArrayList<Animation>();
+		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
 		}
-		
+
+		destinationSet = false;
+
 		currentState = Test_Entity_C.INITIAL_STATE;
-		
+
 		worldX = x;
         worldY = y;
         mapX = x/GameMap.TileSize;
@@ -53,13 +60,11 @@ public class Zombie_Entity extends Entity{
         range = 100;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
-        
-        setDest(5,5);
 	}
 
 	@Override
 	public void render() {
-		animationStates.get(currentState).draw(worldX, worldY);
+		animationStates.get(currentState).draw(worldX, worldY-32);
 	}
 
 	@Override
@@ -76,8 +81,20 @@ public class Zombie_Entity extends Entity{
 		else{
 			System.out.println(worldX + ":" + worldY);
 		}
+
+		if(Entities_P.humans.size()>0) {
+            int nearest = getNearestHuman();
+            int humanX = Entities_P.humans.get(nearest).getX()/32;
+            int humanY = Entities_P.humans.get(nearest).getY()/32;
+            setDest(humanX,humanY);
+            updatePos(destX, destY);
+        }
+
+        if(worldX==destX && worldX==destY){
+            //EXPLOSION
+        }
 	}
-	
+
 	public void updatePos(int destX, int destY){
         pathFinder = new AStar(gMap,range,false);
         path = new Path();
@@ -86,25 +103,72 @@ public class Zombie_Entity extends Entity{
 
         path = pathFinder.findPath(mapX,mapY,destX,destY);
         gMap.clearVisited();
-        if(path!=null){
-//            System.out.println("yeah");
+	    if(destinationSet){
+	            destDist--;
+	            if(destination==0)
+	                worldX -= speed;
+	            if(destination==1)
+	                worldX += speed;
+	            if(destination==2)
+	                worldY -= speed;
+	            if(destination==3)
+	                worldY += speed;
+	
+	            if(destDist==0)
+	                destinationSet = false;
+	    }
+        else if(path!=null){
+        	System.out.println("PUMAPASOK");
             if(path.contains(mapX-1,mapY)) {
-                worldX-=speed;
-//                System.out.println("1 FOUND");
+                if(!Entities_P.isPosOccupied(worldX,worldY,0)) {
+                    destinationSet = true;
+                    destination = 0;
+                    destDist = 32 - worldX%32;
+                }
             }
             else if(path.contains(mapX+1,mapY)) {
-                worldX+=speed;
-//                System.out.println("2 FOUND");
+                if(!Entities_P.isPosOccupied(worldX,worldY,1)) {
+                    destinationSet = true;
+                    destination = 1;
+                    destDist = 32 -worldX%32;
+                }
             }
             else if(path.contains(mapX,mapY-1)) {
-                worldY-=speed;
-//                System.out.println("3 FOUND");
+                if(!Entities_P.isPosOccupied(worldX,worldY,2)) {
+                    destinationSet = true;
+                    destination = 2;
+                    destDist = 32 -worldX%32;
+                }
             }
             else if(path.contains(mapX,mapY+1)) {
-                worldY+=speed;
-//                System.out.println("4 FOUND");
+                if(!Entities_P.isPosOccupied(worldX,worldY,3)) {
+                    destinationSet = true;
+                    worldY += speed;
+                    destination = 3;
+                    destDist = 32 -worldX%32;
+                }
             }
         }
+    }
+
+    public int getNearestHuman(){
+	    int index = 0;
+	    double oldDist = 1000000;
+        double dist;
+
+	    for(int i = 0; i< Entities_P.humans.size(); i++){
+	        int x1 = worldX;
+	        int y1 = worldY;
+	        int x2 = Entities_P.humans.get(i).getX();
+	        int y2 = Entities_P.humans.get(i).getY();
+
+	        dist = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+	        if(dist<=oldDist){
+	            oldDist = dist;
+	            index = i;
+            }
+	    }
+        return index;
     }
 
     public void setDest(int x, int y){
