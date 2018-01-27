@@ -69,8 +69,18 @@ public class Test_P extends BasicGameState implements MouseListener {
     public void mousePressed(int button, int x, int y){
     	System.out.println(Thread.currentThread().getStackTrace()[1]);
     	//Entities_P.add_zombie(new Zombie_Entity(x, y));
-        if(button==0)
+        if(button==0) {
             Entities_P.add_zombie(new Zombie_Entity(x, y));
+            Entities_P.add_zombie(new Zombie_Entity(x+15, y));
+            Entities_P.add_zombie(new Zombie_Entity(x+30, y+10));
+            Entities_P.add_zombie(new Zombie_Entity(x+45, y+15));
+            Entities_P.add_zombie(new Zombie_Entity(x+60, y+20));
+            Entities_P.add_zombie(new Zombie_Entity(x, y));
+            Entities_P.add_zombie(new Zombie_Entity(x+15, y+15));
+            Entities_P.add_zombie(new Zombie_Entity(x+30, y+30));
+            Entities_P.add_zombie(new Zombie_Entity(x+45, y+45));
+            Entities_P.add_zombie(new Zombie_Entity(x+60, y+60));
+        }
         if(button==1)
             Entities_P.add_human(new Human_Entity(x,y));
     }

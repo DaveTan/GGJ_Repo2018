@@ -70,6 +70,7 @@ public class Human_Entity extends Entity{
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
         }
+
     }
 
     public void updatePos(int destX, int destY){

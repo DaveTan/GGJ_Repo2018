@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2beeb5b3-eac0-4b51-8e7d-33a95ac6c85a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/Explosion.png" afterPath="$PROJECT_DIR$/res/Explosion.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/Zombie_Contact.png" afterPath="$PROJECT_DIR$/res/Zombie_Contact.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/animations/Explosion.java" afterPath="$PROJECT_DIR$/src/ggj_game/animations/Explosion.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/entities/Effects_entity.java" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Effects_entity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_C.java" afterPath="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_C.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_R.java" afterPath="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java" afterPath="$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +28,8 @@
             <file leaf-file-name="Test_P.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="336">
-                    <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+                  <state relative-caret-position="421">
+                    <caret line="80" column="65" lean-forward="true" selection-start-line="80" selection-start-column="65" selection-end-line="80" selection-end-column="65" />
                     <folding>
                       <element signature="imports" expanded="true" />
                     </folding>
@@ -52,8 +50,8 @@
             <file leaf-file-name="Zombie_Entity.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="325">
-                    <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
+                  <state relative-caret-position="103">
+                    <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
                     <folding />
                   </state>
                 </provider>
@@ -125,8 +123,8 @@
       <file leaf-file-name="Entities_P.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="719">
+              <caret line="101" column="46" lean-forward="false" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -145,11 +143,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Zombie_Types.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Zombie_Types.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Zombie_Types.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AStar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/AStar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,14 +173,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Human_Entity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Human_Entity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+            <state relative-caret-position="438">
+              <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/GMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -199,40 +217,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Explosion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ggj_game/animations/Explosion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Menu_P.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ggj_game/states/menu/Menu_P.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3026">
-              <caret line="197" column="22" lean-forward="false" selection-start-line="197" selection-start-column="22" selection-end-line="197" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#814#815#0" expanded="false" />
-                <element signature="e#851#852#0" expanded="false" />
-                <element signature="e#4168#4169#0" expanded="false" />
-                <element signature="e#4208#4209#0" expanded="false" />
-                <element signature="e#4274#4275#0" expanded="false" />
-                <element signature="e#4317#4318#0" expanded="false" />
-                <element signature="e#4976#4977#0" expanded="false" />
-                <element signature="e#5026#5027#0" expanded="false" />
-                <element signature="e#5532#5533#0" expanded="false" />
-                <element signature="e#5606#5607#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -251,6 +235,8 @@
       <find>SS_Exp</find>
       <find>ex</find>
       <find>setDes</find>
+      <find>is</find>
+      <find>isOcu</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -294,16 +280,16 @@
         <option value="$PROJECT_DIR$/src/ggj_game/entities/Test_Entity_P.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/states/test/Test_V.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/window/Window_C.java" />
-        <option value="$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/entities/Zombie_Types.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/entities/Entity.java" />
-        <option value="$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/animations/Explosion.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_R.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/sprites/SpriteSheets_C.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/entities/Effects_entity.java" />
-        <option value="$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/states/menu/Menu_R.java" />
+        <option value="$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java" />
+        <option value="$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java" />
+        <option value="$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java" />
         <option value="$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java" />
       </list>
     </option>
@@ -873,7 +859,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31950846" sideWeight="0.5031746" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32718894" sideWeight="0.4968254" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.77880186" sideWeight="0.4968254" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1047,6 +1033,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,21 +1076,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/AStar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/GMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1282,28 +1254,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="75" column="5" lean-forward="true" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ggj_game/engine/Engine_P.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="33" column="38" lean-forward="true" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1319,10 +1273,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java">
+    <entry file="file://$PROJECT_DIR$/src/ggj_game/states/test/Test_P.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="18" lean-forward="false" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        <state relative-caret-position="421">
+          <caret line="80" column="65" lean-forward="true" selection-start-line="80" selection-start-column="65" selection-end-line="80" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1332,16 +1286,50 @@
     <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Zombie_Types.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="101" column="46" lean-forward="false" selection-start-line="101" selection-start-column="46" selection-end-line="101" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/GMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ggj_game/utils/pathfinder/AStar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Zombie_Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="140" column="9" lean-forward="true" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
+        <state relative-caret-position="103">
+          <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ggj_game/entities/Human_Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -26,10 +26,10 @@ public class Zombie_Entity extends Entity{
     private int mapY;
     private int worldX;
     private int worldY;
-    private int speed = 1;
-    private int destX = 0;
-    private int destY = 0;
-    private int type = 0;
+    private int speed;
+    private int destX;
+    private int destY;
+    private int type;
     private int destination;
     private int destDist;
     private boolean destinationSet;
@@ -49,6 +49,8 @@ public class Zombie_Entity extends Entity{
 		destinationSet = false;
 
 		currentState = Test_Entity_C.INITIAL_STATE;
+
+		speed = 1;
 
 		worldX = x;
         worldY = y;
