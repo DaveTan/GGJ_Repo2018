@@ -47,12 +47,11 @@ public class Test_P extends BasicGameState implements MouseListener {
         Entities_P.draw_zombie(g);
         Entities_P.draw_effects(g);
         Zombie_List.render(g);
-<<<<<<< HEAD
   //      Side_Upgrades_List.render(g);
-=======
+
 
         g.drawImage(ImageRes.getSpriteImage("ui",0,0),0,0);
->>>>>>> clarence
+
     }
 
     @Override
