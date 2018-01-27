@@ -20,6 +20,7 @@ public class ImageRes {
         try{
             sprites.put("tilesheet",loadSprite("res/tiles.png",32,32));
             sprites.put("cards",loadSprite("res/card.png",100,150));
+            sprites.put("upgrades", loadSprite("res/card.png",150,100));
         }catch (Exception e){
             e.printStackTrace();
         }

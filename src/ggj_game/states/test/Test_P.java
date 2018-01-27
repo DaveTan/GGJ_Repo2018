@@ -2,6 +2,7 @@ package ggj_game.states.test;
 
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Zombie_Entity;
+import ggj_game.states.test.UI.Side_Upgrades_List;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
 import org.newdawn.slick.Color;
@@ -39,6 +40,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        Test_V.entity.render();
         Entities_P.draw();
         Zombie_List.render(g);
+        Side_Upgrades_List.render(g);
     }
 
     @Override
