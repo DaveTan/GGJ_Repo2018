@@ -2,9 +2,7 @@ package ggj_game.entities;
 
 import java.util.ArrayList;
 
-import ggj_game.animations.Animation_P;
-import ggj_game.states.menu.Menu_R;
-import ggj_game.states.menu.Menu_V;
+import ggj_game.animations.ZombieContact;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -17,6 +15,9 @@ public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	int currentState;
 	
+	private int ID;
+	private boolean isDisabled = false;
+	
 	private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -25,23 +26,19 @@ public class Zombie_Entity extends Entity{
     private int mapY;
     private int worldX;
     private int worldY;
-    private int ticks = 0;
     private int speed = 1;
     private int destX = 0;
     private int destY = 0;
 	
 	public Zombie_Entity(int x, int y) {
-		super(x, y);
+		super(x, y, Entities_P.entCount++);
 	}
 	
 	@Override
-	public void initialize(int x, int y) {
-		animationStates = new ArrayList<Animation>();
-		
-		animationStates.add(Animation_P.LoadAnimation(Menu_R.Human, Test_Entity_C.IDLE_LEFT, 2, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_LEFT, 6, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
-//		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
+	public void initialize(int x, int y, int ID) {
+		this.ID = ID;
+		animationStates = ZombieContact.get();
+		System.out.println(ID);
 		
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
@@ -72,6 +69,13 @@ public class Zombie_Entity extends Entity{
 		}
 		
 		updatePos(destX,destY);
+		
+		if(worldX == destX && destY == worldX){
+			
+		}
+		else{
+			System.out.println(worldX + ":" + worldY);
+		}
 	}
 	
 	public void updatePos(int destX, int destY){
@@ -83,7 +87,7 @@ public class Zombie_Entity extends Entity{
         path = pathFinder.findPath(mapX,mapY,destX,destY);
         gMap.clearVisited();
         if(path!=null){
-            System.out.println("yeah");
+//            System.out.println("yeah");
             if(path.contains(mapX-1,mapY)) {
                 worldX-=speed;
 //                System.out.println("1 FOUND");
@@ -115,4 +119,9 @@ public class Zombie_Entity extends Entity{
     public int getY(){
         return worldY;
     }
+
+	@Override
+	public int getID() {
+		return this.ID;
+	}
 }
