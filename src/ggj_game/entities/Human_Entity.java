@@ -75,16 +75,16 @@ public class Human_Entity extends Entity{
     @Override
     public void render(Graphics g) {
         if(currentState == STATE_WALKING_RIGHT){
-    		animationStates.get(0).draw(worldX, worldY, 32, 32);
+    		animationStates.get(0).draw(worldX-16, worldY, 32, 32);
     	}
     	else if(currentState == STATE_WALKING_LEFT){
-    		animationStates.get(0).draw(worldX, worldY, -32, 32);
+    		animationStates.get(0).draw(worldX+16, worldY, -32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_RIGHT){
-    		animationStates.get(1).draw(worldX, worldY, 32, 32);
+    		animationStates.get(1).draw(worldX-16, worldY, 32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_LEFT){
-    		animationStates.get(1).draw(worldX, worldY, -32, 32);
+    		animationStates.get(1).draw(worldX+16, worldY, -32, 32);
     	}
     }
 
@@ -105,7 +105,7 @@ public class Human_Entity extends Entity{
                         currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
                     if (randShot >= 0 && randShot <= 5){
-                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 0));
+                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 2));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
                     }
                 }
