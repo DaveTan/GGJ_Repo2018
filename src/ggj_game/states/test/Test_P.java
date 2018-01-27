@@ -54,7 +54,7 @@ public class Test_P extends BasicGameState implements MouseListener {
     @Override
     public void mouseDragged(int oldx, int oldy, int newx, int newy){
         System.out.println(Thread.currentThread().getStackTrace()[1]);
-        Entities_P.add(new Zombie_Entity(newx, newy));
+        //Entities_P.add(new Zombie_Entity(newx, newy));
     }
 
     @Override
