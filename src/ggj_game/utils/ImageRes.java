@@ -25,7 +25,11 @@ public class ImageRes {
             sprites.put("range",loadSprite("res/range.png",150,150));
             sprites.put("shadow",loadSprite("res/shadow.png",25,13));
             sprites.put("ui",loadSprite("res/UI.png", Window_C.SIZE_W,Window_C.SIZE_H));
+<<<<<<< HEAD
 
+=======
+            sprites.put("mine",loadSprite("res/mine.png",11,11));
+>>>>>>> clarence
         }catch (Exception e){
             e.printStackTrace();
         }

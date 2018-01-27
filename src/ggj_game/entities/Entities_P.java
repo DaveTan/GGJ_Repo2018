@@ -61,11 +61,6 @@ public class Entities_P {
 	}
 	
 	public static void draw_zombie(Graphics g){
-		for(int a = 0; a<zombies.size(); a++){
-			int zombieX = zombies.get(a).getX();
-			int zombieY = zombies.get(a).getY();
-			g.drawImage(ImageRes.getSpriteImage("shadow",0,0),zombieX-11,zombieY+7);
-		}
 		for(int a = 0; a< zombies.size(); a++){
 			zombies.get(a).render(g);
 		}

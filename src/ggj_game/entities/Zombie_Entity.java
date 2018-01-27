@@ -13,10 +13,12 @@ import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
 import ggj_game.utils.pathfinder.GMap;
+import ggj_game.utils.pathfinder.Map;
 import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import java.util.Random;
 
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
@@ -39,7 +41,12 @@ public class Zombie_Entity extends Entity{
     private int type;
     private int destination;
     private int destDist;
+    private int rallyX;
+    private int rallyY;
     private boolean destinationSet;
+    private Random random;
+
+    private boolean isIDLE;
 
 	public Zombie_Entity(int x, int y) {
 		super(x, y, Entities_P.entCount++);
@@ -48,7 +55,7 @@ public class Zombie_Entity extends Entity{
 	@Override
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
-		
+		random = new Random();
 		this.type = ZombieContact.Type;
 		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
@@ -60,9 +67,12 @@ public class Zombie_Entity extends Entity{
 		currentState = Test_Entity_C.INITIAL_STATE;
 
 		speed = 1;
+		isIDLE = false;
 
 		worldX = x;
         worldY = y;
+        rallyX = worldX;
+        rallyY = worldY;
         mapX = x/GameMap.TileSize;
         mapY = y/GameMap.TileSize;
         range = 15;
@@ -84,14 +94,6 @@ public class Zombie_Entity extends Entity{
 	public void update(int i) {
 		
 		updatePos(destX,destY);
-		
-		if(worldX == destX && destY == worldX){
-
-		}
-		else{
-			System.out.println(worldX + ":" + worldY);
-		}
-		
 		System.out.println("DestX: "+destX);
 		System.out.println("X: "+worldX);
 
@@ -101,7 +103,8 @@ public class Zombie_Entity extends Entity{
             int humanY = Entities_P.humans.get(nearest).getY()/32;
             setDest(humanX,humanY);
             updatePos(destX, destY);
-            
+
+            // CHECK FOR HUMAN CONTACT
             if((worldX+35>=destX*32 && worldX-35<=destX*32) && (worldY+40>=destY*32 && worldY-40<=destY*32)){
 
                 int exp_x = worldX - 80;
@@ -115,19 +118,33 @@ public class Zombie_Entity extends Entity{
             	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
 //            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
-                        
                     }
                 }
-            	
-            	System.out.println("SABOG");
+
             	Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
             }
         }
 
-        if(worldX==destX && worldX==destY){
-            //EXPLOSION YUNG MALI
+        // CHECK FOR MINE CONTACT
+        int mineIndex = 0;
+		boolean mineExploded = false;
+        for(int a=0;a<MapEffects.mines.size();a++){
+		    int mineX = MapEffects.mines.get(a).getX();
+		    int mineY = MapEffects.mines.get(a).getY();
+
+            if((worldX+15>=mineX && worldX-15<=mineX) && (worldY+20>=mineY && worldY-20<=mineY)){
+                Entities_P.doodads.add(new Doodads_Entity(mineX-10, mineY-10, 3, 4));
+                Entities_P.add_effects(new Effects_entity(mineX-80, mineY-60, 0));
+                Entities_P.delete(this.ID, 1);
+                MapEffects.vibrate = true;
+                mineExploded = true;
+                mineIndex = a;
+            }
         }
+        if(mineExploded)
+            MapEffects.mines.remove(mineIndex);
+
 	}
 
 	public void updatePos(int destX, int destY){
@@ -156,6 +173,8 @@ public class Zombie_Entity extends Entity{
 	
 	            if(destDist==0)
 	                destinationSet = false;
+	            rallyX = worldX;
+	            rallyY = worldY;
 	    }
         else if(path!=null){
         	System.out.println("PUMAPASOK");
@@ -187,6 +206,33 @@ public class Zombie_Entity extends Entity{
                     destination = 3;
                     destDist = 32 -worldX%32;
                 }
+            }
+            rallyX = worldX;
+            rallyY = worldY;
+        }
+        else{
+            isIDLE = true;
+            int mapMinX = rallyX-(rallyX%32);
+            int mapMinY = rallyY-(rallyY%32);
+            int mapMaxX = mapMinX+32;
+            int mapMaxY = mapMinY+32;
+
+            int dir = random.nextInt(4);
+            if(dir==0){
+                if(worldX<mapMaxX-speed)
+                    worldX+=speed;
+            }
+            if(dir==1){
+                if(worldX>mapMinX+speed)
+                    worldX-=speed;
+            }
+            if(dir==2){
+                if(worldY<mapMaxY-speed)
+                    worldY+=speed;
+            }
+            if(dir==3){
+                if(worldY>mapMinY+speed)
+                    worldY-=speed;
             }
         }
     }

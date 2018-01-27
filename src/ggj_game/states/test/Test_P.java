@@ -3,19 +3,18 @@ package ggj_game.states.test;
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
+<<<<<<< HEAD
 
 import ggj_game.states.test.UI.Side_Upgrades_List;
 import ggj_game.entities.Zombie_Types;
 
+=======
+>>>>>>> clarence
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.MouseListener;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -33,6 +32,7 @@ public class Test_P extends BasicGameState implements MouseListener {
         Test_V.initialize();
         ImageRes.init();
         Zombie_List.initCards();
+        MapEffects.generateMines(25);
 //        Test_V.entity.setDest(5,5);
     }
 
@@ -46,6 +46,24 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        g.setColor(new Color(255,255,255));
 //        g.fillRect(Test_V.entity.getX(),Test_V.entity.getY(),32,32);
 //        Test_V.entity.render();
+
+        // SHADOWS
+        for(int a = 0; a<Entities_P.zombies.size(); a++){
+            int zombieX = Entities_P.zombies.get(a).getX();
+            int zombieY = Entities_P.zombies.get(a).getY();
+            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),zombieX-11,zombieY+7);
+        }
+        for(int a = 0; a<Entities_P.humans.size(); a++){
+            int humansX = Entities_P.humans.get(a).getX();
+            int humansY = Entities_P.humans.get(a).getY();
+            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),humansX-11,humansY+25);
+        }
+
+        for(int i=0;i<MapEffects.mines.size();i++) {
+            int mineX = MapEffects.mines.get(i).getX();
+            int mineY = MapEffects.mines.get(i).getY();
+            g.drawImage(ImageRes.getSpriteImage("mine", 0, 0), mineX,mineY);
+        }
         Entities_P.draw_doodads(g);
         Entities_P.draw_human(g);
         Entities_P.draw_zombie(g);
