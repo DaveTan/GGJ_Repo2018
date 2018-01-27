@@ -3,11 +3,10 @@ package ggj_game.states.test;
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
-<<<<<<< HEAD
+
 import ggj_game.states.test.UI.Side_Upgrades_List;
-=======
 import ggj_game.entities.Zombie_Types;
->>>>>>> clarence
+
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
