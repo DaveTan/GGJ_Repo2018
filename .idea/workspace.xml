@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2beeb5b3-eac0-4b51-8e7d-33a95ac6c85a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jogg-0.0.7.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jorbis-0.0.15.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/Sound/Bell.ogg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jorbis_0_0_15.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/animations/Animation_P.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Entities_P.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Entity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Test_Entity_C.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Test_Entity_P.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/sound/Sound_C.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/sound/Sound_P.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ggj_game/sound/Sound_S.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ggj_game/utils/Entity.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ggj_game/utils/Entity.java" afterPath="$PROJECT_DIR$/src/ggj_game/entities/Object.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GGJ_New.iml" afterPath="$PROJECT_DIR$/GGJ_New.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/engine/Main.java" afterPath="$PROJECT_DIR$/src/ggj_game/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/states/menu/Menu_L.java" afterPath="$PROJECT_DIR$/src/ggj_game/states/menu/Menu_L.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/states/menu/Menu_P.java" afterPath="$PROJECT_DIR$/src/ggj_game/states/menu/Menu_P.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/states/test/Test_V.java" afterPath="$PROJECT_DIR$/src/ggj_game/states/test/Test_V.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ggj_game/window/Window_C.java" afterPath="$PROJECT_DIR$/src/ggj_game/window/Window_C.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
