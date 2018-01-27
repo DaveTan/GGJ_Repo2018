@@ -102,6 +102,7 @@ public class Human_Entity extends Entity{
                     // PLAY ATTACK ANIMATION HERE
                     int randShot = rand.nextInt(100);
                     if (randShot >= 0 && randShot <= 5)
+                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 0));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
                 }
             }
