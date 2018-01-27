@@ -11,11 +11,13 @@ public class Entities_P {
 	public static ArrayList<Entity> zombies;
 	public static ArrayList<Entity> humans;
 	public static ArrayList<Entity> effects;
+	public static ArrayList<Entity> doodads;
 	
 	public static void initialize(){
 		zombies = new ArrayList<Entity>();
 		humans = new ArrayList<Entity>();
 		effects = new ArrayList<Entity>();
+		doodads = new ArrayList<Entity>();
 	}
 	
 	public static void add_zombie(Entity ent){
@@ -28,6 +30,10 @@ public class Entities_P {
 	
 	public static void add_effects(Entity ent){
 		effects.add(ent);
+	}
+	
+	public static void add_doodad(Entity ent){
+		doodads.add(ent);
 	}
 
 	public static void update_zombie(int i){
@@ -48,7 +54,18 @@ public class Entities_P {
 		}
 	}
 	
+	public static void update_doodad(int i){
+		for(int a = 0; a< doodads.size(); a++){	
+			doodads.get(a).update(i);
+		}
+	}
+	
 	public static void draw_zombie(Graphics g){
+		for(int a = 0; a<zombies.size(); a++){
+			int zombieX = zombies.get(a).getX();
+			int zombieY = zombies.get(a).getY();
+			g.drawImage(ImageRes.getSpriteImage("shadow",0,0),zombieX-11,zombieY+7);
+		}
 		for(int a = 0; a< zombies.size(); a++){
 			zombies.get(a).render(g);
 		}
@@ -64,6 +81,12 @@ public class Entities_P {
 	public static void draw_effects(Graphics g){
 		for(int a = 0;a< effects.size(); a++){
 			effects.get(a).render(g);
+		}
+	}
+	
+	public static void draw_doodads(Graphics g){
+		for(int a = 0;a< doodads.size(); a++){
+			doodads.get(a).render(g);
 		}
 	}
 
@@ -121,10 +144,18 @@ public class Entities_P {
 				}
 			}
 		}
-		else{
+		else if(type == 3){
 			for(int a=0; a<humans.size(); a++){
 				if( humans.get(a).getID() == ID ){
 					humans.remove(a);
+					break;
+				}
+			}
+		}
+		else{
+			for(int a=0; a<doodads.size(); a++){
+				if( doodads.get(a).getID() == ID ){
+					doodads.remove(a);
 					break;
 				}
 			}

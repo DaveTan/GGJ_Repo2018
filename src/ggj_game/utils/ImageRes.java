@@ -1,5 +1,6 @@
 package ggj_game.utils;
 
+import ggj_game.window.Window_C;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -22,7 +23,12 @@ public class ImageRes {
             sprites.put("cards",loadSprite("res/card.png",100,150));
             sprites.put("upgrades", loadSprite("res/card.png",150,100));
             sprites.put("range",loadSprite("res/range.png",150,150));
+<<<<<<< HEAD
 
+=======
+            sprites.put("shadow",loadSprite("res/shadow.png",25,13));
+            sprites.put("ui",loadSprite("res/UI.png", Window_C.SIZE_W,Window_C.SIZE_H));
+>>>>>>> clarence
         }catch (Exception e){
             e.printStackTrace();
         }

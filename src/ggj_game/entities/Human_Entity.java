@@ -43,8 +43,7 @@ public class Human_Entity extends Entity{
     private int ID = 0;
     private float atkspeed = 1.2f;
     private Random rand;
-    private int load;
-    private int atkSpeed = 1;
+    private int atkSpeed = 10;
 
 
     public Human_Entity(int x, int y) {
@@ -54,7 +53,6 @@ public class Human_Entity extends Entity{
     @Override
     public void initialize(int x, int y, int ID) {
     	this.ID = ID;
-    	load = 10;
     	rand = new Random();
         animationStates = HumanRifle.get();
         for(int a=0; a<animationStates.size();a++){
@@ -88,7 +86,6 @@ public class Human_Entity extends Entity{
     	else if(currentState == STATE_ATTACKING_LEFT){
     		animationStates.get(1).draw(worldX, worldY, -32, 32);
     	}
-    	
     }
 
     @Override
@@ -102,9 +99,15 @@ public class Human_Entity extends Entity{
                 double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
                 if (dist <= 100) {
                     // PLAY ATTACK ANIMATION HERE
+                    if(zombieX<worldX)
+                        currentState = STATE_ATTACKING_LEFT;
+                    if(zombieX>worldX)
+                        currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
-                    if (randShot >= 0 && randShot <= 5)
+                    if (randShot >= 0 && randShot <= 5){
+                    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 0));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
+                    }
                 }
             }
         }
