@@ -21,9 +21,8 @@ public class HumanRifle extends Animation_T{
 	public static ArrayList<Animation> get(){
 		ArrayList<Animation> animationStates = new ArrayList<Animation>();
 		
-		for(int a=0; a< SS.getVerticalCount(); a++){
-			animationStates.add(Get_Animation(SS, a, SS.getHorizontalCount(), FRAME_SPEED));
-		}
+		animationStates.add(Get_Animation(SS, 0, SS.getHorizontalCount(), FRAME_SPEED));
+		animationStates.add(Get_Animation(SS, 1, 3, FRAME_SPEED));
 		
 		return animationStates;
 	}

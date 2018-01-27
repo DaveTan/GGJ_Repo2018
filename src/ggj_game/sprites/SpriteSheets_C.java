@@ -7,6 +7,7 @@ public class SpriteSheets_C {
 	
 	/* Effects */
 	public static final String EFF_EXPL = "Explosion.png";
+	public static final String EFF_EXPL2 = "Explosion2.png";
 	
 	/* Human */
 	public static final String HUMAN_MELEE = "Human_Melee.png";
@@ -15,5 +16,5 @@ public class SpriteSheets_C {
 	
 	/* Zombie */
 	public static final String ZOMBIE_CONTACT = "Zombie_Contact.png";
-	public static final String ZOMBIE_AIR = "";
+	public static final String ZOMBIE_AIR = "Zombie_Air.png";
 }

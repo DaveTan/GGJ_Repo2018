@@ -17,9 +17,12 @@ public class Effects_entity extends Entity{
     
     private int worldX;
     private int worldY;
+    private int index;
     
-    public Effects_entity(int x, int y) {
+    public Effects_entity(int x, int y, int index) {
         super(x, y, Entities_P.entCount++);
+        
+        this.index = index;
     }
 
     @Override
@@ -28,11 +31,14 @@ public class Effects_entity extends Entity{
     	
     	worldX = x;
         worldY = y;
-        
-        animationStates = Explosion.get();
+
+        if(index==0)
+            animationStates = Explosion.get();
+        if(index==1)
+            animationStates = Explosion.get2();
+
         for(int a=0; a<animationStates.size();a++){
         	animationStates.get(a).setLooping(false);
-        	animationStates.get(a).stopAt(animationStates.size());
             animationStates.get(a).start();
         }
 
@@ -67,6 +73,7 @@ public class Effects_entity extends Entity{
 	public int getID() {
 		return this.ID;
 	}
+
 }
 
 

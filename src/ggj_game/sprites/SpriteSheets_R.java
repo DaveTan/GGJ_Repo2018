@@ -6,7 +6,7 @@ import org.newdawn.slick.SpriteSheet;
 
 public class SpriteSheets_R {
 	/* EXPLOSION */
-	public static SpriteSheet SS_Expl;
+	public static SpriteSheet SS_Expl, SS_Exp2;
 	
 	/* Humans */
 	public static SpriteSheet SS_HumanMelee;
@@ -24,8 +24,13 @@ public class SpriteSheets_R {
 			
 			SS_ZombieContact = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_CONTACT), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
-			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL).getScaledCopy(2), 160, 120 );
+			SS_ZombieAir = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_AIR), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
+			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL), 160, 120 );
+		
+			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL), 160, 120 );
+			SS_Exp2 = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL2), 80, 60 );
+
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
