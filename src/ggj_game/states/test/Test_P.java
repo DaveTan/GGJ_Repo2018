@@ -40,7 +40,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        Test_V.entity.render();
         Entities_P.draw();
         Zombie_List.render(g);
-        Side_Upgrades_List.render(g);
+  //      Side_Upgrades_List.render(g);
     }
 
     @Override
