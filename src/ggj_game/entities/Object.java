@@ -1,4 +1,4 @@
-package ggj_game.utils;
+package ggj_game.entities;
 
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
@@ -9,7 +9,7 @@ import ggj_game.utils.pathfinder.Path;
 /**
  * Created by Clientrace on 27/01/2018.
  */
-public class Entity {
+public class Object {
     private GMap gMap;
     private AStar pathFinder;
     private Path path;
@@ -23,7 +23,7 @@ public class Entity {
     private int destX = 0;
     private int destY = 0;
 
-    public Entity(){
+    public Object(){
         worldX = 0;
         worldY = 0;
         mapX = 0;

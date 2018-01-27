@@ -1,5 +1,10 @@
 package ggj_game.states.menu;
+
 /*LOGIC */
+
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
+
 public class Menu_L {
 	
 	
@@ -9,6 +14,8 @@ public class Menu_L {
 	
 	public static void event1(){
 		Menu_V.EventVar = 1;
+		
+		Sound_P.Play(Sound_C.Bell_ID);
 	}
 	public static void event2(){
 		Menu_V.EventVar = 2;
