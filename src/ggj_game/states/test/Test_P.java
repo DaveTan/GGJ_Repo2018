@@ -40,6 +40,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        Test_V.entity.render();
         Entities_P.draw_zombie();
         Entities_P.draw_human();
+        Entities_P.draw_effects();
         Zombie_List.render(g);
   //      Side_Upgrades_List.render(g);
     }
@@ -48,6 +49,7 @@ public class Test_P extends BasicGameState implements MouseListener {
     public void update(GameContainer gc, StateBasedGame sb, int i) throws SlickException {
         Entities_P.update_zombie(i);
         Entities_P.update_human(i);
+        Entities_P.update_effects(i);
     }
 
     @Override
