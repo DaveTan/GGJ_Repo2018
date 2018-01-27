@@ -102,7 +102,7 @@ public class Menu_P extends BasicGameState implements KeyListener, MouseListener
     		frameCount = 0;
     	}
     	
-    	Entities_P.update();
+    	Entities_P.update(i);
     	
 //    	if(i % 100 == 0){
 //    		if(animX >= Menu_R.Test.getHorizontalCount()){

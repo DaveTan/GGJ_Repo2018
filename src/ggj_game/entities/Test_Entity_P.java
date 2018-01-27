@@ -27,10 +27,14 @@ public class Test_Entity_P extends Entity{
 		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.IDLE_RIGHT, 10, 250));
 		animationStates.add(Animation_P.LoadAnimation(Menu_R.Test, Test_Entity_C.WALK_RIGHT, 6, 250));
 		
+		for(int a=0; a<animationStates.size();a++){
+			animationStates.get(a).start();
+		}
+		
 		this.posX = x;
 		this.posY = y;
 		
-		changeState(Test_Entity_C.INITIAL_STATE);
+		currentState = Test_Entity_C.INITIAL_STATE;
 	}
 
 	@Override
@@ -39,20 +43,18 @@ public class Test_Entity_P extends Entity{
 	}
 
 	@Override
-	public void update() {
+	public void update(int i) {
+		for(int a=0;a<animationStates.size();a++){
+			animationStates.get(a).update(i);
+		}
+		
 		if(Menu_V.EventVar == 2){
-			changeState(Test_Entity_C.WALK_LEFT);
+			currentState = Test_Entity_C.WALK_LEFT;
+			posX-=1;
 		}
 		else if(Menu_V.EventVar == 3){
-			changeState(Test_Entity_C.WALK_RIGHT);
+			currentState = Test_Entity_C.WALK_RIGHT;
+			posX+=1;
 		}
-	}
-	
-	private void changeState(int state){
-		animationStates.get(currentState).stop();
-		
-		currentState = state;
-		
-		animationStates.get(currentState).start();
 	}
 }

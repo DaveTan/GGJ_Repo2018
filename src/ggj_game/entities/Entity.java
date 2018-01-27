@@ -7,5 +7,5 @@ public abstract class Entity {
 	
 	public abstract void initialize( int x, int y );
 	public abstract void render();
-	public abstract void update();
+	public abstract void update(int i);
 }

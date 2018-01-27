@@ -13,9 +13,9 @@ public class Entities_P {
 		entList.add(ent);
 	}
 	
-	public static void update(){
+	public static void update(int i){
 		for(int a=0; a<entList.size(); a++){
-			entList.get(a).update();
+			entList.get(a).update(i);
 		}
 	}
 	
