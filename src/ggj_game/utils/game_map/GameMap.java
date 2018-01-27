@@ -12,7 +12,7 @@ public class GameMap {
     public static int binaryMap[][];
     private int hollows[][];
     private int solids[][];
-    private int TileSize;
+    public static int TileSize;
 
     public GameMap(String mapDir, int size){
         ImageRes.init();

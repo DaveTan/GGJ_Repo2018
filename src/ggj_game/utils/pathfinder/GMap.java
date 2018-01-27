@@ -2,7 +2,6 @@ package ggj_game.utils.pathfinder;
 
 
 import ggj_game.utils.game_map.GameMap;
-import ggj_game.utils.game_map.MapParser;
 
 public class GMap implements Map{
 
