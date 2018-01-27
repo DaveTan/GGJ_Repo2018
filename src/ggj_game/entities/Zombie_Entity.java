@@ -16,6 +16,7 @@ import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import java.util.Random;
 
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
@@ -37,7 +38,10 @@ public class Zombie_Entity extends Entity{
     private int type;
     private int destination;
     private int destDist;
+    private int rallyX;
+    private int rallyY;
     private boolean destinationSet;
+    private Random random;
 
 	public Zombie_Entity(int x, int y) {
 		super(x, y, Entities_P.entCount++);
@@ -46,6 +50,7 @@ public class Zombie_Entity extends Entity{
 	@Override
 	public void initialize(int x, int y, int ID) {
 		this.ID = ID;
+		random = new Random();
 		animationStates = ZombieContact.get();
 		for(int a=0; a<animationStates.size();a++){
 			animationStates.get(a).start();
@@ -114,7 +119,6 @@ public class Zombie_Entity extends Entity{
             	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
 //            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
-                        
                     }
                 }
             	
@@ -155,6 +159,8 @@ public class Zombie_Entity extends Entity{
 	
 	            if(destDist==0)
 	                destinationSet = false;
+	            rallyX = worldX;
+	            rallyY = worldY;
 	    }
         else if(path!=null){
         	System.out.println("PUMAPASOK");
@@ -186,6 +192,32 @@ public class Zombie_Entity extends Entity{
                     destination = 3;
                     destDist = 32 -worldX%32;
                 }
+            }
+            rallyX = worldX;
+            rallyY = worldY;
+        }
+        else{
+            int mapMinX = rallyX-(rallyX%32);
+            int mapMinY = rallyY-(rallyY%32);
+            int mapMaxX = mapMinX+32;
+            int mapMaxY = mapMinY+32;
+
+            int dir = random.nextInt(4);
+            if(dir==0){
+                if(worldX<mapMaxX-speed)
+                    worldX+=speed;
+            }
+            if(dir==1){
+                if(worldX>mapMinX+speed)
+                    worldX-=speed;
+            }
+            if(dir==2){
+                if(worldY<mapMaxY-speed)
+                    worldY+=speed;
+            }
+            if(dir==3){
+                if(worldY>mapMinY+speed)
+                    worldY-=speed;
             }
         }
     }
