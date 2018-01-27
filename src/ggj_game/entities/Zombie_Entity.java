@@ -89,14 +89,26 @@ public class Zombie_Entity extends Entity{
             setDest(humanX,humanY);
             updatePos(destX, destY);
             
-            if((worldX+50>=destX*32 && worldX-50<=destX*32) && (worldY+50>=destY*32 && worldY-50<=destY*32)){
+            if((worldX+35>=destX*32 && worldX-35<=destX*32) && (worldY+40>=destY*32 && worldY-40<=destY*32)){
             	//PAPASABUGIN YUNG TOTOO
-            	Entities_P.add_effects(new Effects_entity(worldX, worldY));
-            	
+
+                int exp_x = worldX - 80;
+                int exp_y = worldY - 60;
+            	Entities_P.add_effects(new Effects_entity(exp_x, exp_y, 0));
+
+
+            	for(int a=0;a<Entities_P.humans.size();a++){
+            	    int hx = Entities_P.humans.get(a).getX();
+            	    int hy = Entities_P.humans.get(a).getY();
+            	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
+                        Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                    }
+                }
+
             	System.out.println("SABOG");
             	Entities_P.delete(this.ID, 1);
             	
-            	
+
             }
         }
 

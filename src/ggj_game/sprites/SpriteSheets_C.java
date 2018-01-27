@@ -7,6 +7,7 @@ public class SpriteSheets_C {
 	
 	/* Effects */
 	public static final String EFF_EXPL = "Explosion.png";
+	public static final String EFF_EXPL2 = "Explosion2.png";
 	
 	/* Human */
 	public static final String HUMAN_MELEE = "Human_Melee.png";

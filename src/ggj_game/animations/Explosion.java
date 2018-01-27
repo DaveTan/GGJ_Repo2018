@@ -10,6 +10,8 @@ import org.newdawn.slick.SpriteSheet;
 public class Explosion extends Animation_T{
 	/* SPRITE SHEET */
 	private static SpriteSheet SS = SpriteSheets_R.SS_Expl;
+	private static SpriteSheet SS2 = SpriteSheets_R.SS_Exp2;
+
 	
 	/* STATES */
 	public static final int WALK_LEFT = 0;
@@ -25,6 +27,16 @@ public class Explosion extends Animation_T{
 			animationStates.add(Get_Animation(SS, a, SS.getHorizontalCount(), FRAME_SPEED));
 		}
 		
+		return animationStates;
+	}
+
+	public static ArrayList<Animation> get2(){
+		ArrayList<Animation> animationStates = new ArrayList<Animation>();
+
+		for(int a=0; a< SS2.getVerticalCount(); a++){
+			animationStates.add(Get_Animation(SS2, a, SS2.getHorizontalCount(), FRAME_SPEED));
+		}
+
 		return animationStates;
 	}
 }
