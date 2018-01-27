@@ -24,7 +24,9 @@ public class SpriteSheets_R {
 			
 			SS_ZombieContact = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_CONTACT), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
 			
-			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL).getScaledCopy(2), 160, 120 );
+			SS_ZombieAir = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.ZOMBIE_AIR), SpriteSheets_C.SPRITE_SIZE, SpriteSheets_C.SPRITE_SIZE );
+			
+			SS_Expl = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + SpriteSheets_C.EFF_EXPL), 160, 120 );
 			
 		} catch (SlickException e) {
 			e.printStackTrace();

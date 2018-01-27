@@ -1,8 +1,6 @@
 package ggj_game.entities;
 
-import ggj_game.animations.HumanMelee;
 import ggj_game.animations.HumanRifle;
-import ggj_game.states.menu.Menu_R;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
 import ggj_game.utils.pathfinder.AStar;
@@ -18,7 +16,13 @@ import java.util.ArrayList;
  */
 public class Human_Entity extends Entity{
     ArrayList<Animation> animationStates;
-    int currentState;
+    
+    public static final int STATE_WALKING_RIGHT = 0;
+    public static final int STATE_WALKING_LEFT = 1;
+    public static final int STATE_ATTACKING_RIGHT = 2;
+    public static final int STATE_ATTACKING_LEFT = 3;
+    
+    int currentState = 1;
 
     private GMap gMap;
     private AStar pathFinder;
@@ -62,7 +66,19 @@ public class Human_Entity extends Entity{
 
     @Override
     public void render() {
-        animationStates.get(currentState).draw(worldX, worldY);
+    	if(currentState == STATE_WALKING_RIGHT){
+    		animationStates.get(0).draw(worldX, worldY, 32, 32);
+    	}
+    	else if(currentState == STATE_WALKING_LEFT){
+    		animationStates.get(0).draw(worldX, worldY, -32, 32);
+    	}
+    	else if(currentState == STATE_ATTACKING_RIGHT){
+    		animationStates.get(1).draw(worldX, worldY, 32, 32);
+    	}
+    	else if(currentState == STATE_ATTACKING_LEFT){
+    		animationStates.get(1).draw(worldX, worldY, -32, 32);
+    	}
+    	
     }
 
     @Override

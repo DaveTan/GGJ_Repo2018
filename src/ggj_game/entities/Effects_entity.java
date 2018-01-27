@@ -32,7 +32,6 @@ public class Effects_entity extends Entity{
         animationStates = Explosion.get();
         for(int a=0; a<animationStates.size();a++){
         	animationStates.get(a).setLooping(false);
-        	animationStates.get(a).stopAt(animationStates.size());
             animationStates.get(a).start();
         }
 

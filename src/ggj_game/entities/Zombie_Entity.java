@@ -91,7 +91,7 @@ public class Zombie_Entity extends Entity{
             
             if((worldX+50>=destX*32 && worldX-50<=destX*32) && (worldY+50>=destY*32 && worldY-50<=destY*32)){
             	//PAPASABUGIN YUNG TOTOO
-            	Entities_P.add_effects(new Effects_entity(worldX, worldY));
+            	Entities_P.add_effects(new Effects_entity(worldX -80, worldY - 60));
             	
             	System.out.println("SABOG");
             	Entities_P.delete(this.ID, 1);
