@@ -98,7 +98,7 @@ public class Human_Entity extends Entity{
                 double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
                 if (dist <= 100) {
                     // PLAY ATTACK ANIMATION HERE
-                    if(zombieX>worldX)
+                    if(zombieX<worldX)
                         currentState = STATE_ATTACKING_LEFT;
                     if(zombieX>worldX)
                         currentState = STATE_ATTACKING_RIGHT;

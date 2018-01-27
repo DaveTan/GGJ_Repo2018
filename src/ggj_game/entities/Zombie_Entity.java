@@ -2,6 +2,7 @@ package ggj_game.entities;
 
 import java.util.ArrayList;
 
+import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.states.menu.Menu_R;
@@ -105,12 +106,14 @@ public class Zombie_Entity extends Entity{
                 int exp_y = worldY - 60;
             	Entities_P.add_effects(new Effects_entity(exp_x, exp_y, 0));
 
-
             	for(int a=0;a<Entities_P.humans.size();a++){
             	    int hx = Entities_P.humans.get(a).getX();
             	    int hy = Entities_P.humans.get(a).getY();
             	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
-                        Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+            	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
+//            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
+            	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                        
                     }
                 }
             	

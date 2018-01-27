@@ -41,6 +41,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 //        g.setColor(new Color(255,255,255));
 //        g.fillRect(Test_V.entity.getX(),Test_V.entity.getY(),32,32);
 //        Test_V.entity.render();
+        Entities_P.draw_doodads(g);
         Entities_P.draw_human(g);
         Entities_P.draw_zombie(g);
         Entities_P.draw_effects(g);
@@ -49,7 +50,8 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void update(GameContainer gc, StateBasedGame sb, int i) throws SlickException {
-        Entities_P.update_zombie(i);
+        Entities_P.update_doodad(i);
+    	Entities_P.update_zombie(i);
         Entities_P.update_human(i);
         Entities_P.update_effects(i);
     }
