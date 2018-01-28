@@ -70,7 +70,7 @@ public class EventHandler {
 		}
 		eventNum = randomEvent;
 		eventName = getEventName(eventNum);
-		deployCharge = deployCharge+1+random.nextInt(5);
+		deployCharge = deployCharge+1+random.nextInt(10);
 		zombieDeployed = false;
 	}
 
