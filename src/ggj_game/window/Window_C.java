@@ -12,5 +12,5 @@ public class Window_C {
     public static final boolean FULLSCREEN 			= true;
     
     /* WINDOW NAME */
-    public static final String WINDOW_NAME_DEFAULT 	= "Placeholder Name";
+    public static final String WINDOW_NAME_DEFAULT 	= "Party Feeder";
 }
