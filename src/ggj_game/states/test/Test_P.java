@@ -2,6 +2,8 @@ package ggj_game.states.test;
 
 import java.awt.GraphicsEnvironment;
 
+import ggj_game.animations.Explosion;
+import ggj_game.entities.Effects_entity;
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
@@ -30,6 +32,7 @@ public class Test_P extends BasicGameState implements MouseListener {
 	private TrueTypeFont font,font2;
 	private Font awtFont2;
 	private boolean game_over;
+	private int Timer;
 	
     @Override
     public int getID() {
@@ -39,6 +42,7 @@ public class Test_P extends BasicGameState implements MouseListener {
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         Test_V.initialize();
+        Test_R.initialize();
         ImageRes.init();
         Zombie_List.initCards();
 //        Test_V.entity.setDest(5,5);
@@ -62,7 +66,8 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void render(GameContainer gc, StateBasedGame sb, Graphics g) throws SlickException {
-        if(MapEffects.vibrate){
+        
+    	if(MapEffects.vibrate){
             MapEffects.vibrate(g,10);
         }
         Test_V.gameMap1.render(g,0,0);
@@ -104,9 +109,13 @@ public class Test_P extends BasicGameState implements MouseListener {
         g.drawString(" "+Entities_P.humans.size(), 1030, 100);
         g.drawString("TRANSMISSION CHARGE: ",1030,130);
         g.drawString(" "+EventHandler.deployCharge,1030,150);
+        
+        if(EventHandler.zombieDeployed){
+        	Test_R.Shade.getScaledCopy(960, 800).draw(0, 0, new Color(1,1,1, (float)(((Timer%10000)/1000))/10));
+        }
         if(game_over){
-            awtFont2 = awtFont2.deriveFont(50f); // set font size
-            font2 = new TrueTypeFont(awtFont2, false);
+//            awtFont2 = awtFont2.deriveFont(50f); // set font size
+//            font2 = new TrueTypeFont(awtFont2, false);
         	g.setFont(font2);
         	g.drawString("GAME OVER",Window_C.SIZE_W/2-150,350);
         	g.drawString("DAYS SURVIVED: "+EventHandler.DAY,Window_C.SIZE_W/2-130,390);
@@ -122,15 +131,26 @@ public class Test_P extends BasicGameState implements MouseListener {
 
     @Override
     public void update(GameContainer gc, StateBasedGame sb, int i) throws SlickException {
+//        System.out.println(Timer/1000);
+        
     	if(!game_over){
 	        Entities_P.update_doodad(i);
 	    	Entities_P.update_zombie(i);
 	        Entities_P.update_human(i);
 	        Entities_P.update_effects(i);
+	        
+	        if(EventHandler.zombieDeployed && Timer/1000 > 10){
+	        	Timer = 0;
+	        	EventHandler.exec_event();
+	        }
+	        else if(EventHandler.zombieDeployed){
+	        	Timer+=i;
+	        }
     	}
         if(Entities_P.zombies.size()==0 && EventHandler.DAY>0){
         	game_over = true;
         }
+        
     }
 
     @Override
@@ -151,8 +171,7 @@ public class Test_P extends BasicGameState implements MouseListener {
     
     @Override
     public void mousePressed(int button, int x, int y){
-    	System.out.println(Thread.currentThread().getStackTrace()[1]);
-    	//Entities_P.add_zombie(new Zombie_Entity(x, y));
+//    	System.out.println(Thread.currentThread().getStackTrace()[1]);
     	if(Test_V.isHovered == false){
     		if(button==0) {
     			boolean validClick = true;
@@ -165,11 +184,15 @@ public class Test_P extends BasicGameState implements MouseListener {
     				}
     			}
     			if(validClick){
-	    			EventHandler.zombieDeployed = true;
-	    			if(EventHandler.deployCharge>0){
-	    				Entities_P.add_zombie(new Zombie_Entity(x, y));
-	    				EventHandler.deployCharge--;
-	    			}
+    				if(x < 960){
+		    			EventHandler.zombieDeployed = true;
+		    			if(EventHandler.deployCharge>0){
+		    				Entities_P.add_effects(new Effects_entity(x-32, y-32, 1));
+		    				Entities_P.add_zombie(new Zombie_Entity(x, y));
+		    				Sound_P.Play(Sound_C.CHICKS_ID);
+		    				EventHandler.deployCharge--;
+		    			}
+    				}
     			}
             }
             if(button==1){
