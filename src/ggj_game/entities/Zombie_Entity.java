@@ -29,6 +29,7 @@ import java.util.Random;
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
 	Sound Explosion;
+	Sound Summon;
 	int currentState;
 
 	private int ID;
@@ -61,7 +62,8 @@ public class Zombie_Entity extends Entity{
 	@Override
 	public void initialize(int x, int y, int ID) {
 		Explosion = Sound_P.SoundList.get(Sound_C.DIARRHEA_ID);
-		
+		Summon = Sound_P.SoundList.get(Sound_C.IDLE_ZOMBIE_ID);
+		Summon.play();
 		this.ID = ID;
 		random = new Random();
 		this.type = ZombieContact.Type;
@@ -148,6 +150,7 @@ public class Zombie_Entity extends Entity{
                 Entities_P.add_effects(new Effects_entity(mineX-80, mineY-60, 0));
                 Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
+                Explosion.play();
                 mineExploded = true;
                 mineIndex = a;
             }

@@ -36,6 +36,7 @@ public class EventHandler {
 	
 	public static void exec_event(){
 		humanAccuracy = 5;
+		Human_Entity.event_rally = false;
 		eventDescription = getEventDescription(eventNum);
 		if(eventNum==0){
 			//SPAWN HUMAN

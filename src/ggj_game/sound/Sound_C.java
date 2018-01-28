@@ -14,4 +14,7 @@ public class Sound_C {
 	
 	public static final String SMG_FName = "SMG.ogg";
 	public static final int SMG_ID = 3;
+	
+	public static final String CHICKS_FName = "Chicks.ogg";
+	public static final int CHICKS_ID = 4;
 }
