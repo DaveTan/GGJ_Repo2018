@@ -147,30 +147,7 @@ public class Human_Entity extends Entity{
         for(int a=0;a<animationStates.size();a++){
             animationStates.get(a).update(i);
         }
-        if(move) {
-            int mapMinX = rallyX - (rallyX % 32);
-            int mapMinY = rallyY - (rallyY % 32);
-            int mapMaxX = mapMinX + 12;
-            int mapMaxY = mapMinY + 12;
 
-            int dir = rand.nextInt(4);
-            if (dir == 0) {
-                if (worldX < mapMaxX - speed)
-                    worldX += speed;
-            }
-            if (dir == 1) {
-                if (worldX > mapMinX + speed)
-                    worldX -= speed;
-            }
-            if (dir == 2) {
-                if (worldY < mapMaxY - speed)
-                    worldY += speed;
-            }
-            if (dir == 3) {
-                if (worldY > mapMinY + speed)
-                    worldY -= speed;
-            }
-        }
     }
 
     public void updatePos(int destX, int destY){

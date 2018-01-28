@@ -2,10 +2,7 @@ package ggj_game.entities;
 
 import java.util.ArrayList;
 
-import ggj_game.animations.Explosion;
-import ggj_game.animations.HumanRifle;
-import ggj_game.animations.ZombieContact;
-import ggj_game.animations.ZombieMelee;
+import ggj_game.animations.*;
 import ggj_game.sound.Sound_C;
 import ggj_game.sound.Sound_P;
 import ggj_game.sound.Sound_S;
@@ -26,15 +23,14 @@ import org.newdawn.slick.Sound;
 
 import java.util.Random;
 
-public class Zombie_Entity extends Entity{
-	ArrayList<Animation> animationStates;
-	Sound Explosion;
-	Sound Summon;
-	int currentState;
+public class Zombie_Entity3 extends Entity{
+    ArrayList<Animation> animationStates;
+    Sound Explosion;
+    int currentState;
 
-	private int ID;
-	private int moveState;
-	private GMap gMap;
+    private int ID;
+    private int moveState;
+    private GMap gMap;
     private AStar pathFinder;
     private Path path;
     private int range;
@@ -55,31 +51,30 @@ public class Zombie_Entity extends Entity{
 
     private boolean isIDLE;
 
-	public Zombie_Entity(int x, int y) {
-		super(x, y, Entities_P.entCount++);
-	}
+    public Zombie_Entity3(int x, int y) {
+        super(x, y, Entities_P.entCount++);
+    }
 
-	@Override
-	public void initialize(int x, int y, int ID) {
-		Explosion = Sound_P.SoundList.get(Sound_C.DIARRHEA_ID);
-		Summon = Sound_P.SoundList.get(Sound_C.IDLE_ZOMBIE_ID);
-		Summon.play();
-		this.ID = ID;
-		random = new Random();
-		this.type = ZombieContact.Type;
-		animationStates = ZombieContact.get();
-		for(int a=0; a<animationStates.size();a++){
-			animationStates.get(a).start();
-		}
+    @Override
+    public void initialize(int x, int y, int ID) {
+        Explosion = Sound_P.SoundList.get(Sound_C.DIARRHEA_ID);
 
-		destinationSet = false;
+        this.ID = ID;
+        random = new Random();
+        this.type = ZombieSpecial.Type;
+        animationStates = ZombieSpecial.get();
+        for(int a=0; a<animationStates.size();a++){
+            animationStates.get(a).start();
+        }
 
-		currentState = Test_Entity_C.INITIAL_STATE;
+        destinationSet = false;
 
-		speed = 1;
-		isIDLE = false;
+        currentState = Test_Entity_C.INITIAL_STATE;
 
-		worldX = x;
+        speed = 1;
+        isIDLE = false;
+
+        worldX = x;
         worldY = y;
         rallyX = worldX;
         rallyY = worldY;
@@ -88,24 +83,27 @@ public class Zombie_Entity extends Entity{
         range = 8;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
-	}
+    }
 
-	@Override
-	public void render(Graphics g) {
-		if(moveState == 0){
-			animationStates.get(currentState).draw(worldX-16, worldY-16, 32, 32);
-		}
-		else if( moveState == 1 ){
-			animationStates.get(currentState).draw(worldX+16, worldY-16, -32, 32);
-		}
-	}
+    @Override
+    public void render(Graphics g) {
+        if(moveState == 0){
+            animationStates.get(currentState).draw(worldX-16, worldY-16, 32, 32);
+        }
+        else if( moveState == 1 ){
+            animationStates.get(currentState).draw(worldX+16, worldY-16, -32, 32);
+        }
+    }
 
-	@Override
-	public void update(int i) {
-		
-		updatePos(destX,destY);
+    @Override
+    public void update(int i) {
+        for(int a=0;a<animationStates.size();a++){
+            animationStates.get(a).update(i);
+        }
 
-		if(Entities_P.humans.size()>0) {
+        updatePos(destX,destY);
+
+        if(Entities_P.humans.size()>0) {
             int nearest = getNearestHuman();
             int humanX = Entities_P.humans.get(nearest).getX()/32;
             int humanY = Entities_P.humans.get(nearest).getY()/32;
@@ -117,47 +115,46 @@ public class Zombie_Entity extends Entity{
 
                 int exp_x = worldX - 80;
                 int exp_y = worldY - 60;
-            	Entities_P.add_effects(new Effects_entity(exp_x, exp_y, 0));
+                Entities_P.add_effects(new Effects_entity(exp_x, exp_y, 0));
 
-            	for(int a=0;a<Entities_P.humans.size();a++){
-            	    int hx = Entities_P.humans.get(a).getX();
-            	    int hy = Entities_P.humans.get(a).getY();
-            	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
-            	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
-            	    	Explosion.play();
-//            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
-            	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                for(int a=0;a<Entities_P.humans.size();a++){
+                    int hx = Entities_P.humans.get(a).getX();
+                    int hy = Entities_P.humans.get(a).getY();
+                    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
+                        Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
+                        Explosion.play();
+                        Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
+                        Entities_P.add_zombie(new Zombie_Entity(worldX,worldY));
                     }
                 }
 
-            	Entities_P.delete(this.ID, 1);
+                Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
             }
         }
 
         // CHECK FOR MINE CONTACT
         int mineIndex = 0;
-		boolean mineExploded = false;
+        boolean mineExploded = false;
         for(int a=0;a<EventHandler.mines.size();a++){
-		    int mineX = EventHandler.mines.get(a).getX();
-		    int mineY = EventHandler.mines.get(a).getY();
+            int mineX = EventHandler.mines.get(a).getX();
+            int mineY = EventHandler.mines.get(a).getY();
 
             if((worldX+15>=mineX && worldX-15<=mineX) && (worldY+20>=mineY && worldY-20<=mineY)){
                 Entities_P.doodads.add(new Doodads_Entity(mineX-10, mineY-10, 3, 4));
                 Entities_P.add_effects(new Effects_entity(mineX-80, mineY-60, 0));
                 Entities_P.delete(this.ID, 1);
                 MapEffects.vibrate = true;
-                Explosion.play();
                 mineExploded = true;
                 mineIndex = a;
             }
         }
         if(mineExploded)
-        	EventHandler.mines.remove(mineIndex);
+            EventHandler.mines.remove(mineIndex);
 
-	}
+    }
 
-	public void updatePos(int destX, int destY){
+    public void updatePos(int destX, int destY){
         pathFinder = new AStar(gMap,range,false);
         path = new Path();
         mapX = worldX/ GameMap.TileSize;
@@ -165,27 +162,27 @@ public class Zombie_Entity extends Entity{
 
         path = pathFinder.findPath(mapX,mapY,destX,destY);
         gMap.clearVisited();
-	    if(destinationSet){
-	            destDist--;
-	            if(destination==0){
-	                worldX -= speed;
-	                moveState = 0;
-	            }
-	            else if(destination==1){
-	                worldX += speed;
-	                moveState =1;
-	            }
-	            
-	            if(destination==2)
-	                worldY -= speed;
-	            else if(destination==3)
-	                worldY += speed;
-	
-	            if(destDist==0)
-	                destinationSet = false;
-	            rallyX = worldX;
-	            rallyY = worldY;
-	    }
+        if(destinationSet){
+            destDist--;
+            if(destination==0){
+                worldX -= speed;
+                moveState = 0;
+            }
+            else if(destination==1){
+                worldX += speed;
+                moveState =1;
+            }
+
+            if(destination==2)
+                worldY -= speed;
+            else if(destination==3)
+                worldY += speed;
+
+            if(destDist==0)
+                destinationSet = false;
+            rallyX = worldX;
+            rallyY = worldY;
+        }
         else if(path!=null){
             if(path.contains(mapX-1,mapY)) {
                 if(!Entities_P.isPosOccupied(worldX,worldY,0)) {
@@ -247,22 +244,22 @@ public class Zombie_Entity extends Entity{
     }
 
     public int getNearestHuman(){
-	    int index = 0;
-	    double oldDist = 1000000;
+        int index = 0;
+        double oldDist = 1000000;
         double dist;
 
-	    for(int i = 0; i< Entities_P.humans.size(); i++){
-	        int x1 = worldX;
-	        int y1 = worldY;
-	        int x2 = Entities_P.humans.get(i).getX();
-	        int y2 = Entities_P.humans.get(i).getY();
+        for(int i = 0; i< Entities_P.humans.size(); i++){
+            int x1 = worldX;
+            int y1 = worldY;
+            int x2 = Entities_P.humans.get(i).getX();
+            int y2 = Entities_P.humans.get(i).getY();
 
-	        dist = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
-	        if(dist<=oldDist){
-	            oldDist = dist;
-	            index = i;
+            dist = Math.sqrt(Math.pow((x2-x1),2) + Math.pow((y2-y1),2));
+            if(dist<=oldDist){
+                oldDist = dist;
+                index = i;
             }
-	    }
+        }
         return index;
     }
 
@@ -279,8 +276,8 @@ public class Zombie_Entity extends Entity{
         return worldY;
     }
 
-	@Override
-	public int getID() {
-		return this.ID;
-	}
+    @Override
+    public int getID() {
+        return this.ID;
+    }
 }
