@@ -19,6 +19,7 @@ public class EventHandler {
     public static int DAY;
     public static boolean zombieDeployed;
     public static int deployCharge;
+    public static int zombieType;
     
     public static void init(){
     	mines = new ArrayList<Mine>();
@@ -29,6 +30,7 @@ public class EventHandler {
     	eventName = getEventName(eventNum);
     	zombieDeployed = false;
     	DAY = 0;
+    	zombieType = 0;
     	deployCharge = 5;
     }
 	
@@ -69,6 +71,16 @@ public class EventHandler {
 		eventName = getEventName(eventNum);
 		deployCharge = deployCharge+1+random.nextInt(5);
 		zombieDeployed = false;
+	}
+
+	public static void genZombie(){
+		int randZombie = random.nextInt(100);
+		if(randZombie>=0&&randZombie<=50)
+			zombieType = 0;
+		if(randZombie>=50&&randZombie<=80)
+			zombieType = 1;
+		if(randZombie>=80&&randZombie<=99)
+			zombieType = 2;
 	}
 	
 	public static String getEventName(int num){

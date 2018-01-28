@@ -16,6 +16,7 @@ public class SpriteSheets_C {
 	
 	/* Zombie */
 	public static final String ZOMBIE_MELEE = "Zombie_Melee.png";
+	public static final String ZOMBIE_SPECIAL = "Zombie_Special.png";
 	public static final String ZOMBIE_AIR = "Zombie_Air.png";
 	
 	/* Etc */

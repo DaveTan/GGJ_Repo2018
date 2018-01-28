@@ -2,10 +2,7 @@ package ggj_game.states.test;
 
 import java.awt.GraphicsEnvironment;
 
-import ggj_game.entities.Entities_P;
-import ggj_game.entities.Human_Entity;
-import ggj_game.entities.Zombie_Entity;
-import ggj_game.entities.Zombie_Types;
+import ggj_game.entities.*;
 import ggj_game.sound.Sound_C;
 import ggj_game.sound.Sound_P;
 import ggj_game.states.test.UI.Zombie_List;
@@ -104,6 +101,13 @@ public class Test_P extends BasicGameState implements MouseListener {
         g.drawString(" "+Entities_P.humans.size(), 1030, 100);
         g.drawString("TRANSMISSION CHARGE: ",1030,130);
         g.drawString(" "+EventHandler.deployCharge,1030,150);
+        g.drawString("NEXT DISEASE TRANSMISSION:",990,200);
+        if(EventHandler.zombieType==1)
+            g.drawString("MELEE",990,220);
+        if(EventHandler.zombieType==0)
+            g.drawString("AIRBORNE",990,220);
+        if(EventHandler.zombieType==2)
+            g.drawString("SPECIAL",990,220);
         if(game_over){
             awtFont2 = awtFont2.deriveFont(50f); // set font size
             font2 = new TrueTypeFont(awtFont2, false);
@@ -167,8 +171,14 @@ public class Test_P extends BasicGameState implements MouseListener {
     			if(validClick){
 	    			EventHandler.zombieDeployed = true;
 	    			if(EventHandler.deployCharge>0){
-	    				Entities_P.add_zombie(new Zombie_Entity(x, y));
+	    			    if(EventHandler.zombieType==0)
+    	    				Entities_P.add_zombie(new Zombie_Entity2(x, y));
+                        if(EventHandler.zombieType==1)
+                            Entities_P.add_zombie(new Zombie_Entity(x, y));
+                        if(EventHandler.zombieType==2)
+                            Entities_P.add_zombie(new Zombie_Entity3(x, y));
 	    				EventHandler.deployCharge--;
+	    				EventHandler.genZombie();
 	    			}
     			}
             }

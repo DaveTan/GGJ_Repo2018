@@ -16,6 +16,8 @@ public class SpriteSheets_R {
 	public static SpriteSheet SS_ZombieMelee;
 	
 	public static SpriteSheet SS_ZombieAir;
+
+	public static SpriteSheet SS_ZombieSpecial;
 	
 	/* ETC */
 	public static SpriteSheet SS_DeadBody;
@@ -49,7 +51,10 @@ public class SpriteSheets_R {
 			SS_ZombieDeath = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + "Zombie1_Death.png"), 32, 32 );
 
 			SS_Explostion3 = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR + "explosion3.png"), 80, 80);
-			
+
+			SS_ZombieSpecial = new SpriteSheet( new Image(SpriteSheets_C.SPRITE_DIR +SpriteSheets_C.ZOMBIE_SPECIAL), 32, 32);
+
+
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
