@@ -20,7 +20,7 @@ public class ImageRes {
         sprites = new HashMap<>();
         try{
             sprites.put("tilesheet",loadSprite("res/tiles.png",32,32));
-            sprites.put("cards",loadSprite("res/card.png",100,150));
+//            sprites.put("cards",loadSprite("res/card.png",100,150));
             sprites.put("range",loadSprite("res/range.png",150,150));
             sprites.put("shadow",loadSprite("res/shadow.png",25,13));
             sprites.put("ui",loadSprite("res/UI.png", 960,800));

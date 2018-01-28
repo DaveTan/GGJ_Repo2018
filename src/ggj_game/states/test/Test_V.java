@@ -11,6 +11,7 @@ public class Test_V {
     public static GameMap gameMap1;
     public static Zombie_Entity entity;
     public static int Selection = 0;
+    public static int DayScore = 0;
     
     public static boolean isHovered = false;
     

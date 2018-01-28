@@ -11,6 +11,7 @@ import ggj_game.entities.Zombie_Entity;
 import ggj_game.entities.Zombie_Types;
 import ggj_game.sound.Sound_C;
 import ggj_game.sound.Sound_P;
+import ggj_game.states.StateID_C;
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.EventHandler;
 import ggj_game.utils.ImageRes;
@@ -68,6 +69,8 @@ public class Test_P extends BasicGameState implements MouseListener {
     @Override
     public void render(GameContainer gc, StateBasedGame sb, Graphics g) throws SlickException {
         
+    	
+    	
     	if(MapEffects.vibrate){
             MapEffects.vibrate(g,10);
         }
@@ -111,12 +114,18 @@ public class Test_P extends BasicGameState implements MouseListener {
         g.drawString("TRANSMISSION CHARGE: ",1030,130);
         g.drawString(" "+EventHandler.deployCharge,1030,150);
         g.drawString("NEXT DISEASE TRANSMISSION:",990,200);
-        if(EventHandler.zombieType==0)
+        if(EventHandler.zombieType==0){
             g.drawString("MELEE",990,220);
-        if(EventHandler.zombieType==1)
+            g.drawImage(Test_R.Card1.getScaledCopy(2), 1020, 260);
+        }
+        if(EventHandler.zombieType==1){
             g.drawString("AIRBORNE",990,220);
-        if(EventHandler.zombieType==2)
+            g.drawImage(Test_R.Card2.getScaledCopy(2), 1020, 260);
+        }
+        if(EventHandler.zombieType==2){
             g.drawString("SPECIAL",990,220);
+            g.drawImage(Test_R.Card3.getScaledCopy(2), 1020, 260);
+        }
         
         if(EventHandler.zombieDeployed){
         	Test_R.Shade.getScaledCopy(960, 800).draw(0, 0, new Color(1,1,1, (float)(((Timer%10000)/1000))/10));
@@ -154,6 +163,8 @@ public class Test_P extends BasicGameState implements MouseListener {
 	        else if(EventHandler.zombieDeployed){
 	        	Timer+=i;
 	        }
+    	}else{
+    		sb.enterState(StateID_C.GAMEOVER);
     	}
         if(Entities_P.zombies.size()==0 && EventHandler.DAY>0){
         	game_over = true;
