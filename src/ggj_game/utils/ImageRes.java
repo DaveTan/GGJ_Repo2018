@@ -26,11 +26,7 @@ public class ImageRes {
             sprites.put("shadow",loadSprite("res/shadow.png",25,13));
             sprites.put("ui",loadSprite("res/UI.png", 960,800));
             sprites.put("mine",loadSprite("res/mine.png",11,11));
-<<<<<<< HEAD
-
-=======
             sprites.put("entity_icons",loadSprite("res/entity_icons.png",58,170));
->>>>>>> clarence
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -8,18 +8,14 @@ import ggj_game.entities.Effects_entity;
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
-<<<<<<< HEAD
 
 
 import ggj_game.states.test.UI.Side_Upgrades_List;
 import ggj_game.entities.Zombie_Types;
 
-
-=======
 import ggj_game.entities.Zombie_Types;
 import ggj_game.sound.Sound_C;
 import ggj_game.sound.Sound_P;
->>>>>>> clarence
 import ggj_game.states.test.UI.Zombie_List;
 import ggj_game.utils.EventHandler;
 import ggj_game.utils.ImageRes;
@@ -107,14 +103,11 @@ public class Test_P extends BasicGameState implements MouseListener {
         Entities_P.draw_human(g);
         Entities_P.draw_zombie(g);
         Entities_P.draw_effects(g);
-<<<<<<< HEAD
         Zombie_List.render(g);
   //      Side_Upgrades_List.render(g);
 
 
         g.drawImage(ImageRes.getSpriteImage("ui",0,0),0,0);
-
-=======
         //Zombie_List.render(g);
 //        awtFont2 = awtFont2.deriveFont(20f); // set font size
 //        font2 = new TrueTypeFont(awtFont2, false);
@@ -152,7 +145,6 @@ public class Test_P extends BasicGameState implements MouseListener {
             if(!EventHandler.zombieDeployed)
             	g.drawString("DEPLOY YOUR ZOMBIES",Window_C.SIZE_W/2-150,720);
         }
->>>>>>> clarence
     }
 
     @Override
