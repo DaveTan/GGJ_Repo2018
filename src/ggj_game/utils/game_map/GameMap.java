@@ -12,6 +12,8 @@ public class GameMap {
     public static int binaryMap[][];
     private int hollows[][];
     private int solids[][];
+    private int spawnpoints[][];
+    
     public static int TileSize;
 
     public GameMap(String mapDir, int size){
@@ -19,6 +21,7 @@ public class GameMap {
         MapParser.load(mapDir);
         hollows = MapParser.mapHollows;
         solids = MapParser.mapSolids;
+        spawnpoints = MapParser.mapSpawnPoints;
         TileSize = size;
         binaryMap = new int[MapParser.WIDTH][MapParser.HEIGHT];
     }
@@ -41,6 +44,16 @@ public class GameMap {
                 }
                 else
                     binaryMap[i][j] = 0;
+            }
+        }
+        
+        // RENDER SPAWN POINTS
+        for(int i=0;i<MapParser.WIDTH;i++) {
+            for(int j=0;j<MapParser.HEIGHT;j++) {
+                if(parseImageVal(spawnpoints[i][j])!=null){
+                    g.drawImage(parseImageVal(spawnpoints[i][j]), i*TileSize, j*TileSize);
+                    binaryMap[i][j] = 2;
+                }
             }
         }
     }

@@ -6,7 +6,11 @@ import ggj_game.animations.Explosion;
 import ggj_game.animations.HumanRifle;
 import ggj_game.animations.ZombieContact;
 import ggj_game.animations.ZombieMelee;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
+import ggj_game.sound.Sound_S;
 import ggj_game.states.menu.Menu_R;
+import ggj_game.utils.EventHandler;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
 import ggj_game.utils.game_map.GameMap;
@@ -18,10 +22,13 @@ import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Sound;
+
 import java.util.Random;
 
 public class Zombie_Entity extends Entity{
 	ArrayList<Animation> animationStates;
+	Sound Explosion;
 	int currentState;
 	
 	private int Type;
@@ -54,6 +61,8 @@ public class Zombie_Entity extends Entity{
 
 	@Override
 	public void initialize(int x, int y, int ID) {
+		Explosion = Sound_P.SoundList.get(Sound_C.DIARRHEA_ID);
+		
 		this.ID = ID;
 		random = new Random();
 		this.type = ZombieContact.Type;
@@ -75,7 +84,7 @@ public class Zombie_Entity extends Entity{
         rallyY = worldY;
         mapX = x/GameMap.TileSize;
         mapY = y/GameMap.TileSize;
-        range = 15;
+        range = 8;
         gMap = new GMap(MapParser.WIDTH,MapParser.HEIGHT);
         pathFinder = new AStar(gMap,range,false);
 	}
@@ -94,8 +103,6 @@ public class Zombie_Entity extends Entity{
 	public void update(int i) {
 		
 		updatePos(destX,destY);
-		System.out.println("DestX: "+destX);
-		System.out.println("X: "+worldX);
 
 		if(Entities_P.humans.size()>0) {
             int nearest = getNearestHuman();
@@ -116,6 +123,7 @@ public class Zombie_Entity extends Entity{
             	    int hy = Entities_P.humans.get(a).getY();
             	    if(hx>=exp_x && hx<=exp_x+180 && hy>=exp_y && hy<=exp_y+120) {
             	    	Entities_P.doodads.add(new Doodads_Entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3, 1));
+            	    	Explosion.play();
 //            	    	Entities_P.effects.add(new Effects_entity(Entities_P.humans.get(a).getX(), Entities_P.humans.get(a).getY(), 3));
             	    	Entities_P.delete(Entities_P.humans.get(a).getID(), 3);
                     }
@@ -129,9 +137,9 @@ public class Zombie_Entity extends Entity{
         // CHECK FOR MINE CONTACT
         int mineIndex = 0;
 		boolean mineExploded = false;
-        for(int a=0;a<MapEffects.mines.size();a++){
-		    int mineX = MapEffects.mines.get(a).getX();
-		    int mineY = MapEffects.mines.get(a).getY();
+        for(int a=0;a<EventHandler.mines.size();a++){
+		    int mineX = EventHandler.mines.get(a).getX();
+		    int mineY = EventHandler.mines.get(a).getY();
 
             if((worldX+15>=mineX && worldX-15<=mineX) && (worldY+20>=mineY && worldY-20<=mineY)){
                 Entities_P.doodads.add(new Doodads_Entity(mineX-10, mineY-10, 3, 4));
@@ -143,7 +151,7 @@ public class Zombie_Entity extends Entity{
             }
         }
         if(mineExploded)
-            MapEffects.mines.remove(mineIndex);
+        	EventHandler.mines.remove(mineIndex);
 
 	}
 
@@ -177,7 +185,6 @@ public class Zombie_Entity extends Entity{
 	            rallyY = worldY;
 	    }
         else if(path!=null){
-        	System.out.println("PUMAPASOK");
             if(path.contains(mapX-1,mapY)) {
                 if(!Entities_P.isPosOccupied(worldX,worldY,0)) {
                     destinationSet = true;

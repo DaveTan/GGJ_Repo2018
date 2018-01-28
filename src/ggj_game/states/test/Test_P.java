@@ -1,26 +1,45 @@
 package ggj_game.states.test;
 
+import java.awt.GraphicsEnvironment;
+
 import ggj_game.entities.Entities_P;
 import ggj_game.entities.Human_Entity;
 import ggj_game.entities.Zombie_Entity;
+<<<<<<< HEAD
 
 
 import ggj_game.states.test.UI.Side_Upgrades_List;
 import ggj_game.entities.Zombie_Types;
 
 
+=======
+import ggj_game.entities.Zombie_Types;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
+>>>>>>> clarence
 import ggj_game.states.test.UI.Zombie_List;
+import ggj_game.utils.EventHandler;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.MapEffects;
+import ggj_game.window.Window_C;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
+
+import java.awt.Font;
+import java.io.InputStream;
 
 /**
  * Created by Clientrace on 26/01/2018.
  */
 public class Test_P extends BasicGameState implements MouseListener {
+	
+	private TrueTypeFont font,font2;
+	private Font awtFont2;
+	private boolean game_over;
+	
     @Override
     public int getID() {
         return 1;
@@ -31,14 +50,29 @@ public class Test_P extends BasicGameState implements MouseListener {
         Test_V.initialize();
         ImageRes.init();
         Zombie_List.initCards();
-        MapEffects.generateMines(25);
 //        Test_V.entity.setDest(5,5);
+        EventHandler.init();
+        Sound_P.Loop(Sound_C.MAIN_ID);
+        game_over = false;
+        Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+        font = new TrueTypeFont(awtFont, false);
+
+        // load font from a .ttf file
+        try {
+            InputStream inputStream = ResourceLoader.getResourceAsStream("res/dpcomic.ttf");
+            awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            awtFont2 = awtFont2.deriveFont(20f); // set font size
+            font2 = new TrueTypeFont(awtFont2, false);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sb, Graphics g) throws SlickException {
         if(MapEffects.vibrate){
-            MapEffects.vibrate(g,20);
+            MapEffects.vibrate(g,10);
         }
         Test_V.gameMap1.render(g,0,0);
         g.setColor(new Color(255,255,255));
@@ -55,32 +89,66 @@ public class Test_P extends BasicGameState implements MouseListener {
         for(int a = 0; a<Entities_P.humans.size(); a++){
             int humansX = Entities_P.humans.get(a).getX();
             int humansY = Entities_P.humans.get(a).getY();
-            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),humansX-11,humansY+25);
+            g.drawImage(ImageRes.getSpriteImage("shadow",0,0),humansX-11,humansY+15);
         }
 
-        for(int i=0;i<MapEffects.mines.size();i++) {
-            int mineX = MapEffects.mines.get(i).getX();
-            int mineY = MapEffects.mines.get(i).getY();
+        for(int i=0;i<EventHandler.mines.size();i++) {
+            int mineX = EventHandler.mines.get(i).getX();
+            int mineY = EventHandler.mines.get(i).getY();
             g.drawImage(ImageRes.getSpriteImage("mine", 0, 0), mineX,mineY);
         }
         Entities_P.draw_doodads(g);
         Entities_P.draw_human(g);
         Entities_P.draw_zombie(g);
         Entities_P.draw_effects(g);
+<<<<<<< HEAD
         Zombie_List.render(g);
   //      Side_Upgrades_List.render(g);
 
 
         g.drawImage(ImageRes.getSpriteImage("ui",0,0),0,0);
 
+=======
+        //Zombie_List.render(g);
+//        awtFont2 = awtFont2.deriveFont(20f); // set font size
+//        font2 = new TrueTypeFont(awtFont2, false);
+        g.setFont(font2);
+        g.drawImage(ImageRes.getSpriteImage("ui",0,0),0,0);
+        g.drawImage(ImageRes.getSpriteImage("entity_icons",0,0),970,30);
+        g.drawString("ZOMBIES:", 1030, 30);
+        g.drawString(" "+Entities_P.zombies.size(), 1030, 50);
+        g.drawString("HUMANS:", 1030, 80);
+        g.drawString(" "+Entities_P.humans.size(), 1030, 100);
+        g.drawString("TRANSMISSION CHARGE: ",1030,130);
+        g.drawString(" "+EventHandler.deployCharge,1030,150);
+        if(game_over){
+            awtFont2 = awtFont2.deriveFont(50f); // set font size
+            font2 = new TrueTypeFont(awtFont2, false);
+        	g.setFont(font2);
+        	g.drawString("GAME OVER",Window_C.SIZE_W/2-150,350);
+        	g.drawString("DAYS SURVIVED: "+EventHandler.DAY,Window_C.SIZE_W/2-130,390);
+        }
+        else{
+            g.drawString("NEXT EVENT: "+EventHandler.eventName, Window_C.SIZE_W/2-100, 5);
+            g.drawString("DAY "+EventHandler.DAY, Window_C.SIZE_W/2-100, 20);
+            g.drawString(EventHandler.eventDescription, Window_C.SIZE_W/2-50, 750);
+            if(!EventHandler.zombieDeployed)
+            	g.drawString("DEPLOY YOUR ZOMBIES",Window_C.SIZE_W/2-150,720);
+        }
+>>>>>>> clarence
     }
 
     @Override
     public void update(GameContainer gc, StateBasedGame sb, int i) throws SlickException {
-        Entities_P.update_doodad(i);
-    	Entities_P.update_zombie(i);
-        Entities_P.update_human(i);
-        Entities_P.update_effects(i);
+    	if(!game_over){
+	        Entities_P.update_doodad(i);
+	    	Entities_P.update_zombie(i);
+	        Entities_P.update_human(i);
+	        Entities_P.update_effects(i);
+    	}
+        if(Entities_P.zombies.size()==0 && EventHandler.DAY>0){
+        	game_over = true;
+        }
     }
 
     @Override
@@ -105,19 +173,27 @@ public class Test_P extends BasicGameState implements MouseListener {
     	//Entities_P.add_zombie(new Zombie_Entity(x, y));
     	if(Test_V.isHovered == false){
     		if(button==0) {
-                Entities_P.add_zombie(new Zombie_Entity(x, y));
-                Entities_P.add_zombie(new Zombie_Entity(x+15, y));
-                Entities_P.add_zombie(new Zombie_Entity(x+30, y+10));
-                Entities_P.add_zombie(new Zombie_Entity(x+45, y+15));
-                Entities_P.add_zombie(new Zombie_Entity(x+60, y+20));
-                Entities_P.add_zombie(new Zombie_Entity(x, y));
-                Entities_P.add_zombie(new Zombie_Entity(x+15, y+15));
-                Entities_P.add_zombie(new Zombie_Entity(x+30, y+30));
-                Entities_P.add_zombie(new Zombie_Entity(x+45, y+45));
-                Entities_P.add_zombie(new Zombie_Entity(x+60, y+60));
+    			boolean validClick = true;
+    			for(int i=0;i<Entities_P.humans.size();i++){
+    				int hX = Entities_P.humans.get(i).getX();
+    				int hY = Entities_P.humans.get(i).getY();
+    				if((x+35>=hX && x-35<=hX) && (y+40>=hY && y-40<=hY)){
+    					validClick = false;
+    					break;
+    				}
+    			}
+    			if(validClick){
+	    			EventHandler.zombieDeployed = true;
+	    			if(EventHandler.deployCharge>0){
+	    				Entities_P.add_zombie(new Zombie_Entity(x, y));
+	    				EventHandler.deployCharge--;
+	    			}
+    			}
             }
-            if(button==1)
-                Entities_P.add_human(new Human_Entity(x,y));
+            if(button==1){
+            	if(EventHandler.zombieDeployed)
+            		EventHandler.exec_event();
+            }
     	}
     }
 

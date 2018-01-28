@@ -1,6 +1,9 @@
 package ggj_game.entities;
 
 import ggj_game.animations.HumanRifle;
+import ggj_game.sound.Sound_C;
+import ggj_game.sound.Sound_P;
+import ggj_game.utils.EventHandler;
 import ggj_game.utils.ImageRes;
 import ggj_game.utils.game_map.GameMap;
 import ggj_game.utils.game_map.MapParser;
@@ -10,6 +13,7 @@ import ggj_game.utils.pathfinder.Path;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Sound;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +23,8 @@ import java.util.Random;
  */
 public class Human_Entity extends Entity{
     ArrayList<Animation> animationStates;
+    
+    Sound Gunshot;
     
     public static final int STATE_WALKING_RIGHT = 0;
     public static final int STATE_WALKING_LEFT = 1;
@@ -35,7 +41,7 @@ public class Human_Entity extends Entity{
     private int mapY;
     private int worldX;
     private int worldY;
-    private int ticks = 0;
+    private int ticks = 0; 
     private int speed ;
     private int destX = 0;
     private int destY = 0;
@@ -48,6 +54,9 @@ public class Human_Entity extends Entity{
     private int rallyX;
     private int rallyY;
     private boolean isIDLE;
+    public static boolean event_rally;
+    public static int event_rally_x;
+    public static int event_rally_y;
 
 
     public Human_Entity(int x, int y) {
@@ -56,6 +65,7 @@ public class Human_Entity extends Entity{
 
     @Override
     public void initialize(int x, int y, int ID) {
+    	Gunshot = Sound_P.SoundList.get(Sound_C.SMG_ID);
     	this.ID = ID;
     	rand = new Random();
         animationStates = HumanRifle.get();
@@ -69,6 +79,7 @@ public class Human_Entity extends Entity{
         speed = 1;
         worldX = x;
         worldY = y;
+        event_rally = false;
         rallyX = worldX;
         rallyY = worldY;
         mapX = x/ GameMap.TileSize;
@@ -82,22 +93,27 @@ public class Human_Entity extends Entity{
     @Override
     public void render(Graphics g) {
         if(currentState == STATE_WALKING_RIGHT){
-    		animationStates.get(0).draw(worldX-16, worldY, 32, 32);
+    		animationStates.get(0).draw(worldX-16, worldY-10, 32, 32);
     	}
     	else if(currentState == STATE_WALKING_LEFT){
-    		animationStates.get(0).draw(worldX+16, worldY, -32, 32);
+    		animationStates.get(0).draw(worldX+16, worldY-10, -32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_RIGHT){
-    		animationStates.get(1).draw(worldX-16, worldY, 32, 32);
+    		animationStates.get(1).draw(worldX-16, worldY-10, 32, 32);
     	}
     	else if(currentState == STATE_ATTACKING_LEFT){
-    		animationStates.get(1).draw(worldX+16, worldY, -32, 32);
+    		animationStates.get(1).draw(worldX+16, worldY-10, -32, 32);
     	}
     }
 
     @Override
     public void update(int i) {
         ticks++;
+        if(event_rally){
+        	setDest(event_rally_x,event_rally_y);
+        	updatePos(destX,destY);
+        	move = false;
+        }
         if(ticks>atkSpeed) {
             ticks = 0;
 
@@ -107,12 +123,14 @@ public class Human_Entity extends Entity{
                 double dist = Math.sqrt(Math.pow((zombieX - worldX), 2) + Math.pow((zombieY - worldY), 2));
                 if (dist <= 100) {
                     // PLAY ATTACK ANIMATION HERE
+                	Gunshot.play();
                     if(zombieX<worldX)
                         currentState = STATE_ATTACKING_LEFT;
                     if(zombieX>worldX)
                         currentState = STATE_ATTACKING_RIGHT;
                     int randShot = rand.nextInt(100);
-                    if (randShot >= 0 && randShot <= 5){
+                    if (randShot >= 0 && randShot <= EventHandler.humanAccuracy){
+                    	Sound_P.Play(Sound_C.IDLE_ZOMBIE_ID);
                     	Entities_P.doodads.add(new Doodads_Entity(Entities_P.zombies.get(a).getX(), Entities_P.zombies.get(a).getY(), 3, 2));
                         Entities_P.delete(Entities_P.zombies.get(a).getID(), 1);
                     }

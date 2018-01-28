@@ -12,10 +12,9 @@ import java.util.Random;
  * Created by Clientrace on 27/01/2018.
  */
 public class MapEffects {
-    public static ArrayList<Mine> mines;
     private static Random random = new Random();
     private static int dir;
-    private static int dur = 15;
+    private static int dur = 10;
     private static int ticks;
     private static int range;
     public static boolean vibrate;
@@ -54,18 +53,6 @@ public class MapEffects {
         }
     }
 
-    public static void generateMines(int mineNum){
-        mines = new ArrayList<>();
-        for(int i=0;i<mineNum;i++){
-            while(true) {
-                int mineX = random.nextInt(960);
-                int mineY = random.nextInt(800);
-                if (GameMap.binaryMap[mineX/32][mineY/32] == 0){
-                    mines.add(new Mine(mineX,mineY));
-                    break;
-                }
-            }
-        }
-    }
+
 
 }
